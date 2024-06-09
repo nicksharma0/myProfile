@@ -94,15 +94,13 @@ body {
     animation-delay: .4s;
 }
 
-/*.myImage {
+.myImage {
     position: relative;
-    top: 3rem;
-    width: 12vw;
     border-radius: 50%;
     box-shadow: 0 0 25px rgb(156, 148, 202);
-    left: 975px;
-    top: -275px;
-} */
+    left: 750px;
+    top: -200px;
+}
 
 #btn-box{
     width: 345px;
