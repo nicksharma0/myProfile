@@ -2,11 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Open Sans";
+    font-family: 'Nunito', sans-serif; /* Updated font family */
 }
 
 body {
-    background-color: rgb(15, 16, 43);
+    background-color: #0c1022; /* Dark blue background */
+    color: #eeebdd; /* Light yellow text */
 }
 
 .header {
@@ -15,33 +16,32 @@ body {
     left: 0;
     width: 100%;
     padding: 20px 10%;
-    background: transparent;
     display: flex;
     justify-content: space-between;
+    background-color: #0c1022; /* Dark blue background */
+    z-index: 1000; /* Ensure header is on top */
+    transition: top 0.3s; /* Smooth transition for hiding/showing */
+}
+
+.header.hidden {
+    top: -100px; /* Adjust this value as needed to fully hide the header */
 }
 
 .logo {
     font-size: 25px;
-    color: rgb(230, 231, 247);
+    color: #eeebdd; /* Light yellow */
     font-weight: 900;
     text-decoration: none;
 }
 
-.logo::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: rgb(15, 16, 43);
-    animation: showRight 1s ease forwards;
-    animation-delay: .4s;
+.navbar {
+    z-index: 1001; /* Ensure navbar links are on top */
 }
 
 .navbar a {
     font-size: 16px;
-    color: rgb(230, 231, 247);
+    background-color: #0c1022; /* Dark blue background */
+    color: #eeebdd; /* Light yellow */
     font-weight: 500;
     margin-left: 30px;
     text-decoration: none;
@@ -49,138 +49,269 @@ body {
 }
 
 .navbar a:hover {
-    color: aqua;
+    color: #03dac6; /* Turquoise */
+}
+
+.home,
+.info {
+    padding-top: 120px; /* Adjust this value as needed */
 }
 
 .home {
     height: 100vh;
     display: flex;
     align-items: center;
-    padding: 0 10%
+    padding: 0 10%;
 }
 
 .home-content {
     max-width: 600px;
 }
 
-.home-content h1{
+.home-content h1 {
     font-size: 50px;
     font-weight: 700;
-    color: white;
+    color: #eeebdd; /* Light yellow */
 }
 
-.home-content h3{
-    color: rgb(171, 172, 186);
+.home-content h3 {
+    color: #9b9b9b; /* Light gray */
     font-size: 32px;
     font-weight: 700;
-    color: rgb(156, 148, 202);
 }
 
-
-.home-content p{
-    color: rgb(171, 172, 186);
-    margin: 20px 0 20px;
+.home-content p {
+    color: #b5b5b5; /* Light gray */
+    margin: 20px 0;
 }
 
-.home-content ::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: rgb(15, 16, 43);
-    animation: showRight 1s ease forwards;
-    animation-delay: .4s;
-}
-
-.myImage {
-    position: relative;
-    border-radius: 50%;
-    box-shadow: 0 0 25px rgb(156, 148, 202);
-    left: 750px;
-    top: -200px;
-}
-
-#btn-box{
+#btn-box {
     width: 345px;
     height: 50px;
-    justify-content: space-between;
     display: flex;
+    justify-content: space-between;
 }
 
-#btn-box::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: rgb(15, 16, 43);
-    animation: showRight 1s ease forwards;
-    animation-delay: .4s;
-    z-index: 2;
-}
-
-#btn-box a{
+#btn-box a {
     position: relative;
     display: inline-flex;
     width: 150px;
     height: 100%;
-    background:transparent;
-    border: 2px solid rgb(161, 164, 207);
+    background: transparent;
+    border: 2px solid #b5b5b5; /* Light gray border */
     border-radius: 8px;
-    font-size:19px;
-    color: rgb(156, 148, 202);
+    font-size: 19px;
+    color: #9b9b9b; /* Light gray */
     text-decoration: none;
     font-weight: 600;
     letter-spacing: 1px;
     align-items: center;
     justify-content: center;
-    z-index: 1;
     overflow: hidden;
-}
-
-#btn-box a:nth-child(2) {
-    background: transparent;
-    color:rgb(161, 164, 207);
+    transition: .3s;
 }
 
 #btn-box a:hover::before {
     width: 100%;
-
 }
 
-#btn-box a::before{
+#btn-box a::before {
     content: '';
     position: absolute;
     top: 0;
     right: 0;
-    width: 100%;
+    width: 0;
     height: 100%;
-    background: rgb(15, 16, 43);
-    animation: showRight 1s ease forwards;
-    animation-delay: .9s;
-    z-index: 2;
-}
-
-.info {
-    margin-left: 150px;
+    background: #d4d2e6; /* Dark blue background */
+    transition: width .4s ease;
+    z-index: -1;
 }
 
 .info .info-header {
     font-size: 30px;
-    color: white;
+    color: #eeebdd; /* Light yellow */
+    text-align: center;
+    margin-bottom: 3rem; /* Adjust spacing */
+    background-color: #0c2738;
+    padding: 20px;
 }
 
-.info .info-content {
-    color: white;
-    font-size: 15px;
+.info-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust columns for responsiveness */
+    gap: 4rem; /* Adjust the gap between boxes */
+    padding: 0 5%; /* Adjust padding for edge spacing */
+    max-width: 2000px; /* Adjust maximum width for the container */
+    margin: 0 auto; /* Center align the container */
 }
+
+.info-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1a1a1a; /* Dark gray */
+    height: 300px; /* Adjust height as needed */
+    border-radius: 3rem;
+    cursor: pointer;
+    border: 5px solid #0f0c29; /* Dark blue border */
+    transition: transform 0.4s ease-in-out, background-color 0.4s ease-in-out, border-color 0.4s ease-in-out;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none; /* Remove default link underline */
+    padding: 1rem; /* Add padding inside each box */
+}
+
+.info-box:hover {
+    background: #0f4c75; /* Teal */
+    border: 5px solid #eeebdd; /* Light yellow border */
+    transform: scale(1.03);
+}
+
+.info-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #eeebdd; /* Light yellow */
+}
+
+.info-info i {
+    font-size: 3rem; /* Adjust icon size */
+    margin-bottom: 1rem; /* Space between icon and text */
+}
+
+.info-info h4 {
+    font-size: 1.5rem; /* Adjust font size for headings */
+    margin: 0.5rem 0; /* Adjust top and bottom margin */
+    font-weight: 800;
+}
+
+.info-info p {
+    font-size: 1rem; /* Adjust font size for paragraphs */
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.info-info i {
+    font-size: 8rem;
+}
+
+.info-header {
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.info-header.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animation for info boxes */
+.info-box {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.info-box.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.myImage {
+    position: relative;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    left: 850px;
+    width: 250px; /* Adjust the width as needed */
+    height: 250px; /* Adjust the height as needed */
+    top: -270px;
+}
+
+.profile-wrapper {
+    position: relative;
+    display: inline-block; /* Ensures circle stays within the profile picture bounds */
+}
+
+.circle-animation {
+    position: absolute;
+    top: -145px; /* Adjust based on your design */
+    left: 975px; /* Adjust based on your design */
+    transform: translate(-50%, -50%);
+    width: 260px; /* Adjust size of the circle */
+    height: 260px; /* Adjust size of the circle */
+    border-radius: 50%;
+    border: 10px solid #03dac6; /* Turquoise border */
+    border-top-color: transparent;
+    animation: rotateCircle 8s linear infinite; /* Adjust animation duration and timing */
+}
+
+/* Footer styles */
+.footer {
+    background-color: #0c2738; /* Dark blue background */
+    color: #eeebdd; /* Light yellow text */
+    padding: 20px 10%;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer p {
+    margin: 0;
+}
+
+/* Back to Top button */
+#back-to-top-btn {
+    background-color: #0f0c29; /* Dark blue background */
+    color: #eeebdd; /* Light yellow text */
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+#back-to-top-btn:hover {
+    background-color: #03dac6; /* Turquoise */
+}
+
 
 /* Keyframe Animations */
-@keyframes showRight{
-    100%{
-        width: 0;
+@keyframes showRight {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.showRight {
+    animation: showRight 1s ease forwards;
+}
+
+.info-box {
+    border: 5px solid #eeebdd; /* Light yellow border */
+}
+
+@keyframes rotateCircle {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
     }
 }
