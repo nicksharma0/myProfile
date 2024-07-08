@@ -431,7 +431,7 @@ body {
         border-radius: 50%;
         border: 10px solid #03dac6; /* Turquoise border */
         border-top-color: transparent;
-        animation: rotateCircle 8s linear infinite; /* Adjust animation duration and timing */
+        animation: rotateCircle 7s linear infinite; /* Adjust animation duration and timing */
     }
 }
 
