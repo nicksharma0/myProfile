@@ -10,8 +10,14 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <header class='header showRight'>
-        <a href="index.html" class="logo">Nick.</a>
+    <header class="header showRight">
+        <a href="index.html" class="logo"><span class="difColor">N</span>ick.</a>
+        <div class="mobile-menu-toggle">
+            <input type="checkbox" id="mobile-menu-checkbox">
+            <label for="mobile-menu-checkbox">
+                <div class="mobile-menu-icon"></div>
+            </label>
+        </div>
         <nav class="navbar">
             <a href="information.html" class="showRight">Information</a>
             <a href="ap.html" class="showRight">Advanced Placement Courses</a>
@@ -19,17 +25,25 @@
             <a href="extracurriculars.html" class="showRight">Extracurriculars</a>
         </nav>
     </header>
+
+    <nav class="sidebar">
+        <a href="information.html" class="showRight">Information</a>
+        <a href="ap.html" class="showRight">Advanced Placement Courses</a>
+        <a href="awards.html" class="showRight">Awards & Certificates</a>
+        <a href="extracurriculars.html" class="showRight">Extracurriculars</a>
+    </nav>
+
     <section class="home showRight">
         <div class="home-content">
-            <br><br><br><br><br><br><br><br><br><br><br><br>
-            <h1 class="showRight">Hello, I'm Nick Sharma.</h1>
+            <br><br><br><br><br><br><br><br>
+            <h1 class="showRight">Hello, I'm <span class="difColorhead">Nick</span> Sharma.</h1>
             <h3 class="showRight">Student @ Prosper High School '25</h3>
             <p class="showRight">I'm hard working, creative, and innovative- looking to serve others and the community.</p>
             <div id="btn-box" class="showRight">
                 <a href="mailto:sharma.nick67@gmail.com" class="showRight">Email Me</a>
             </div>
             <div class="profile-wrapper">
-                <img src="pfp.png" class="myImage showRight">
+                <img src="images/pfp.png" class="myImage showRight">
                 <div class="circle-animation"></div>
             </div>
         </div>
@@ -130,6 +144,22 @@
         // Event listener for scrolling to trigger animation
         window.addEventListener('scroll', animateOnScroll);
         window.addEventListener('load', animateOnScroll); // Trigger on page load
+    </script>
+
+    <script>
+        // JavaScript function to toggle mobile sidebar
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuCheckbox = document.getElementById('mobile-menu-checkbox');
+            const sidebar = document.querySelector('.sidebar');
+
+            menuCheckbox.addEventListener('change', function () {
+                if (this.checked) {
+                    sidebar.classList.add('sidebar-open');
+                } else {
+                    sidebar.classList.remove('sidebar-open');
+                }
+            });
+        });
     </script>
 
 </body>
