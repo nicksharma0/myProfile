@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,48 +7,130 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-
 <body>
-
-    <header class ='header'>
-        <a href="#" class="logo">Nick.</a>
-
+    <header class='header showRight'>
+        <a href="index.html" class="logo">Nick.</a>
         <nav class="navbar">
-            <a href="#">Information</a>
-            <a href="#">Advanced Placement Courses</a>
-            <a href="#">Awards & Certificates</a>
-            <a href="#">Extracurriculars</a>
+            <a href="information.html" class="showRight">Information</a>
+            <a href="ap.html" class="showRight">Advanced Placement Courses</a>
+            <a href="awards.html" class="showRight">Awards & Certificates</a>
+            <a href="extracurriculars.html" class="showRight">Extracurriculars</a>
         </nav>
-
     </header>
-
-    <section class="home">
+    <section class="home showRight">
         <div class="home-content">
-            <h1>Hello, I'm Nick Sharma.</h1>
-            <h3>Student at Prosper High School</h3>
-            <p>I'm hardworking, creative, and innovative- looking to serve others and the community.</p>
-
-            <div id="btn-box">
-                <a href="mailto:sharma.nick67@gmail.com">Email Me</a> 
+            <br><br><br><br><br><br><br><br><br><br><br><br>
+            <h1 class="showRight">Hello, I'm Nick Sharma.</h1>
+            <h3 class="showRight">Student @ Prosper High School '25</h3>
+            <p class="showRight">I'm hard working, creative, and innovative- looking to serve others and the community.</p>
+            <div id="btn-box" class="showRight">
+                <a href="mailto:sharma.nick67@gmail.com" class="showRight">Email Me</a>
             </div>
-            <img src="pfp.png" class="myImage">
+            <div class="profile-wrapper">
+                <img src="images/pfp.png" class="myImage showRight">
+                <div class="circle-animation"></div>
+            </div>
         </div>
     </section>
+    <section class="info showRight">
+        <div class="info-header showRight">
+            <h1>Details</h1>
+        </div>
+        <br><br><br><br>
+        <div class="info-container">
+            <a href="information.html" class="info-box showRight">
+                <div class="info-info showRight">
+                    <i class='bx bxs-info-circle'></i>
+                    <h4>Information</h4>
+                    <p>Click for more details</p>
+                </div>
+            </a>
+            <a href="ap.html" class="info-box showRight">
+                <div class="info-info showRight">
+                    <i class='bx bxs-book'></i>
+                    <h4>Advanced Placement</h4>
+                    <p>Click for more details</p>
+                </div>
+            </a>
+            <a href="awards.html" class="info-box showRight">
+                <div class="info-info showRight">
+                    <i class='bx bxs-medal'></i>
+                    <h4>Awards & Certificates</h4>
+                    <p>Click for more details</p>
+                </div>
+            </a>
+            <a href="extracurriculars.html" class="info-box showRight">
+                <div class="info-info showRight">
+                    <i class='bx bxs-star'></i>
+                    <h4>Extracurriculars</h4>
+                    <p>Click for more details</p>
+                </div>
+            </a>
+        </div>
+    </section>
+    <br><br><br><br><br><br>
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Nick Sharma. All rights reserved.</p>
+            <button onclick="topFunction()" id="back-to-top-btn" title="Go to top">
+                <i class='bx bxs-up-arrow-alt'></i>
+            </button>
+        </div>
+    </footer>
 
-    <!--<section class="info">
-        <div class="info-header">
-            <h1>Information</h1>
-        </div>
-        <div class="info-content">
-            Phone
-            Email
-            School
-            Graduation
-        </div>
-    </section> !-->
+    <script>
+        // JavaScript function to scroll to the top of the page smoothly
+        function topFunction() {
+            // Scroll to the top of the page with smooth behavior
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+    
+    <script>
+        // Function to check if an element is in viewport
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+    
+        // Function to add or remove animation class based on viewport visibility
+        function animateOnScroll() {
+            const infoHeader = document.querySelector('.info-header');
+            const infoBoxes = document.querySelectorAll('.info-box');
+
+            // Check info header visibility
+            if (isInViewport(infoHeader)) {
+                infoHeader.classList.add('animate');
+            } else {
+                infoHeader.classList.remove('animate');
+            }
+
+            // Check info boxes visibility
+            infoBoxes.forEach(box => {
+                // Only add/remove animation class if not hovering over the box
+                if (!box.matches(':hover') && isInViewport(box)) {
+                    box.classList.add('animate');
+                } else {
+                    box.classList.remove('animate');
+                }
+            });
+        }
+    
+        // Event listener for scrolling to trigger animation
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll); // Trigger on page load
+    </script>
 
 </body>
-
 </html>
