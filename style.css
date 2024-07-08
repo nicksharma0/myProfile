@@ -8,13 +8,11 @@
 body {
     background-color: #0c1022; /* Dark blue background */
     color: #eeebdd; /* Light yellow text */
+    margin: 0;
 }
 
+/* Header adjustments */
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
     padding: 20px 10%;
     display: flex;
     justify-content: space-between;
@@ -46,6 +44,97 @@ body {
     margin-left: 30px;
     text-decoration: none;
     transition: .3s;
+}
+
+/* Mobile Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Start off-screen to the left */
+    height: 100vh;
+    width: 250px;
+    z-index: 1002;
+    background-color: #0c2738;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Adjust shadow as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    transition: left 0.3s ease;
+    padding-top: 20px; /* Add padding at the top for spacing */
+}
+
+/* Mobile Sidebar open state */
+.sidebar-open {
+    left: 0; /* Slide in when checkbox is checked */
+}
+
+/* Sidebar links */
+.sidebar a {
+    display: block; /* Ensure each link is on a new line */
+    width: 100%; /* Make links take up the full width */
+    padding: 10px 20px; /* Add padding for spacing */
+    text-decoration: none; /* Remove underline */
+    color: #eeebdd; /* Text color */
+    border-bottom: 1px solid #ccc; /* Optional: add a border between links */
+}
+
+/* Hide sidebar and toggle button by default */
+.sidebar,
+.mobile-menu-toggle {
+    display: none;
+}
+
+/* Show sidebar and toggle button on small screens */
+@media (max-width: 768px) {
+    .sidebar,
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .navbar {
+        display: none; /* Hide top navbar on mobile */
+    }
+}
+
+/* Styling for mobile menu toggle */
+.mobile-menu-icon {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+}
+
+.mobile-menu-icon:before,
+.mobile-menu-icon:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #eeebdd; /* Light yellow */
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu-icon:before {
+    top: 0;
+}
+
+.mobile-menu-icon:after {
+    bottom: 0;
+}
+
+#mobile-menu-checkbox {
+    display: none; /* Hide default checkbox */
+}
+
+#mobile-menu-checkbox:checked + .mobile-menu-icon:before {
+    transform: rotate(45deg);
+    top: 13px;
+}
+
+#mobile-menu-checkbox:checked + .mobile-menu-icon:after {
+    transform: rotate(-45deg);
+    bottom: 13px;
 }
 
 .navbar a:hover {
@@ -204,6 +293,16 @@ body {
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
+.difColor{
+    color:#0f4c75;
+}
+
+.difColorhead{
+    color:#0f4c75;
+    font-size: 55px;
+    font-weight: 800;
+}
+
 .info-header.animate {
     opacity: 1;
     transform: translateY(0);
@@ -288,6 +387,67 @@ body {
     background-color: #03dac6; /* Turquoise */
 }
 
+@media (max-width: 1024px) {
+    /* CSS rules for smaller screens */
+    .navbar {
+        flex-direction: column; /* Stack navigation links vertically */
+        align-items: flex-start; /* Align links to the left */
+    }
+    .header {
+        padding: 10px 5%; /* Reduce padding for header */
+    }
+    .home {
+        padding-top: 80px; /* Adjust padding for smaller screens */
+    }
+    .info-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust grid columns */
+        gap: 2rem; /* Adjust gap between boxes */
+    }
+}
+
+@media (max-width: 768px) {
+    .myImage {
+        position: absolute;
+        left: auto; /* Reset left positioning */
+        transform: none; /* Reset any transformations */
+        width: 150px; /* Adjust the width */
+        height: 150px; /* Adjust the height */
+        margin: 0 auto; /* Center align the image */
+        top: -640px; /* Reset top positioning */
+    }
+
+    .home-content{
+        margin-right: 0px;
+        padding-left: 0;
+    }
+    
+    .circle-animation {
+        position: absolute;
+        top: -570px; /* Adjust based on your design */
+        left: 75px; /* Adjust based on your design */
+        transform: translate(-50%, -50%);
+        width: 160px; /* Adjust size of the circle */
+        height: 160px; /* Adjust size of the circle */
+        border-radius: 50%;
+        border: 10px solid #03dac6; /* Turquoise border */
+        border-top-color: transparent;
+        animation: rotateCircle 8s linear infinite; /* Adjust animation duration and timing */
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 10px 5%; /* Reduce padding for header */
+    }
+
+    .home {
+        padding-top: 80px; /* Adjust padding for smaller screens */
+    }
+    
+    .info {
+        padding-top: 20px; /* Ensure content is close to each other */
+    }
+}
 
 /* Keyframe Animations */
 @keyframes showRight {
