@@ -11,7 +11,13 @@
 </head>
 <body>
     <header class='header showRight'>
-        <a href="index.html" class="logo">Nick.</a>
+        <a href="index.html" class="logo"><span class="difColor">N</span>ick.</a>
+        <div class="mobile-menu-toggle">
+            <input type="checkbox" id="mobile-menu-checkbox">
+            <label for="mobile-menu-checkbox">
+                <div class="mobile-menu-icon"></div>
+            </label>
+        </div>
         <nav class="navbar">
             <a href="information.html" class="showRight">Information</a>
             <a href="ap.html" class="showRight">Advanced Placement Courses</a>
@@ -19,5 +25,33 @@
             <a href="extracurriculars.html" class="showRight">Extracurriculars</a>
         </nav>
     </header>
+
+    <nav class="sidebar">
+        <a href="information.html" class="showRight">Information</a>
+        <a href="ap.html" class="showRight">Advanced Placement Courses</a>
+        <a href="awards.html" class="showRight">Awards & Certificates</a>
+        <a href="extracurriculars.html" class="showRight">Extracurriculars</a>
+    </nav>
+
+    <div class="home-content">
+        <h1 class="showRight">Header</h1>
+        <h3>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit porro sit ab provident ipsa odio natus dolorem alias eaque voluptatum, quam molestias ipsam aperiam saepe quisquam harum atque. Omnis, magni.</h3>
+    </div>
+
+    <script>
+        // JavaScript function to toggle mobile sidebar
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuCheckbox = document.getElementById('mobile-menu-checkbox');
+            const sidebar = document.querySelector('.sidebar');
+
+            menuCheckbox.addEventListener('change', function () {
+                if (this.checked) {
+                    sidebar.classList.add('sidebar-open');
+                } else {
+                    sidebar.classList.remove('sidebar-open');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
