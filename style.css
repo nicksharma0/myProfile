@@ -415,23 +415,9 @@ body {
         margin: 0 auto; /* Center align the image */
         top: -640px; /* Reset top positioning */
     }
-
-    .home-content{
-        margin-right: 0px;
-        padding-left: 0;
-    }
     
     .circle-animation {
-        position: absolute;
-        top: -570px; /* Adjust based on your design */
-        left: 75px; /* Adjust based on your design */
-        transform: translate(-50%, -50%);
-        width: 160px; /* Adjust size of the circle */
-        height: 160px; /* Adjust size of the circle */
-        border-radius: 50%;
-        border: 10px solid #03dac6; /* Turquoise border */
-        border-top-color: transparent;
-        animation: rotateCircle 7s linear infinite; /* Adjust animation duration and timing */
+        display: none;
     }
 }
 
