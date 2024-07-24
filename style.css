@@ -405,6 +405,50 @@ body {
     }
 }
 
+/* Certifications section */
+.certifications {
+    padding: 60px 10%;
+    background-color: #0c1022; /* Same dark blue background */
+    color: #eeebdd; /* Light yellow text */
+    text-align: center;
+}
+
+.certifications h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    font-weight: 800;
+    color: #eeebdd; /* Light yellow */
+}
+
+.certification-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Gap between images */
+}
+
+.certification-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.certification-item img {
+    max-width: 100%;
+    border: 2px solid #eeebdd; /* Light yellow border */
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.certification-item img:hover {
+    transform: scale(1.05);
+}
+
+.certification-item p {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #eeebdd; /* Light yellow */
+}
+
 @media (max-width: 768px) {
     .myImage {
         position: absolute;
