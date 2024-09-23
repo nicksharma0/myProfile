@@ -303,7 +303,7 @@ CAREER/TECH ED
 
             const processedNoColonLines = processLines(linesWithoutColons);
             const noColonOutput = processedNoColonLines.length > 0 ?
-                processedNoColonLines.map(line => line.join(' ')).join('\n').replace(/([a-zA-Z1-6]) ([a-zA-Z1-6])/g, '$1$2') :
+                processedNoColonLines.map(line => line.join(' ')).join('\n').replace(/([a-zA-Z]) ([a-zA-Z])/g, '$1$2') :
                 'No valid lines without colons found.';
 
             const combinedOutput = `${colonOutput}\n${noColonOutput}`;
