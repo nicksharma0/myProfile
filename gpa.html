@@ -165,7 +165,10 @@
 
 
 <body>
-
+    <div class="disclaimer" style="background-color: #fff2cc; border: 2px solid red; color: red; padding: 15px; margin-bottom: 20px; text-align: center; font-weight: bold; width: 100%; box-sizing: border-box;">
+        This is a STUDENT made calculator, it is not official. It's possible the calculated GPA is not accurate; for the best results, make sure the table accurately represents your transcript.
+    </div>
+    
     <div class="header">Prosper High School GPA Calculator</div>
     <div class="container">
         <div class="left">
@@ -300,7 +303,7 @@ CAREER/TECH ED
 
             const processedNoColonLines = processLines(linesWithoutColons);
             const noColonOutput = processedNoColonLines.length > 0 ?
-                processedNoColonLines.map(line => line.join(' ')).join('\n').replace(/([a-zA-Z]) ([a-zA-Z])/g, '$1$2') :
+                processedNoColonLines.map(line => line.join(' ')).join('\n').replace(/([a-zA-Z1-6]) ([a-zA-Z1-6])/g, '$1$2') :
                 'No valid lines without colons found.';
 
             const combinedOutput = `${colonOutput}\n${noColonOutput}`;
