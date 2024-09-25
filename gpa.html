@@ -12,7 +12,7 @@
             color: #000000;
             margin: 20px;
         }
-
+    
         .header {
             background-color: #204321; /* Green header */
             color: #ffffff;
@@ -25,28 +25,28 @@
             margin-bottom: 20px;
             font-family: 'Montserrat', sans-serif; /* Header font */
         }
-
+    
         h1 {
             text-align: center;
             width: 100%;
         }
-
+    
         .container {
             display: flex;
             width: 100%;
         }
-
+    
         .left {
             flex: 1;
             margin-right: 20px;
         }
-
+    
         .right {
             width: 40%;
             padding-right: 20px;
             height: 40px;
         }
-
+    
         textarea {
             width: 100%;
             height: 200px;
@@ -57,7 +57,7 @@
             color: #000000;
             resize: none;
         }
-
+    
         button {
             width: 100%;
             margin-top: 10px;
@@ -69,12 +69,12 @@
             border-radius: 4px;
             cursor: pointer;
         }
-
+    
         button:hover {
             background-color: #C9C9C9;
             color: #000000;
         }
-
+    
         .outputSection {
             margin-top: 20px;
             height: 500px;
@@ -86,7 +86,7 @@
             text-align: center;
             font-size: 25px;
         }
-
+    
         table {
             width: 100%;
             border-collapse: collapse;
@@ -95,18 +95,18 @@
             color: #000000;
             min-height: 200px; /* You can keep or adjust this */
         }
-
+    
         th, td {
             border: 1px solid #C9C9C9;
             padding: 8px;
             text-align: center;
         }
-
+    
         th {
             background-color: #204321;
             color: #ffffff;
         }
-
+    
         td {
             border: 1px solid #C9C9C9;
             padding: 8px;
@@ -114,7 +114,7 @@
             align-items: center; /* Center vertically */
             text-align: center;
         }
-
+    
         td input, td select {
             width: 100%;
             padding: 5px;
@@ -127,12 +127,33 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: bold;
         }
-        
+    
+        tr:nth-child(odd) {
+            background-color: #f5f5dc; /* Light tan color */
+        }
+
+        tr:nth-child(even) {
+            background-color: #ffffff; /* White color */
+        }
+
+        /* Style for the text input fields */
+        td input {
+            background-color: transparent; /* Makes the background transparent so it shows the row color */
+            outline: none; /* Removes the default outline */
+            border: none;
+        }
+
+        /* If you want to add more styling to input fields */
+        td input:focus {
+            background-color: rgba(245, 245, 220, 0.5); /* Light tan with some transparency when focused */
+            border: none;
+        }
+    
         #gpaOutput {
             font-size: 100px; /* Make the GPA number larger */
             margin-top: 125px; /* Space above the GPA number */
         }
-
+    
         footer {
             text-align: center;
             margin-top: 20px;
@@ -140,7 +161,7 @@
             color: #204321;
             font-style: italic; /* Footer styling */
         }
-
+    
         #scrollToTop {
             position: fixed;
             bottom: 30px;
@@ -155,12 +176,12 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
             transition: background-color 0.3s;
         }
-
+    
         #scrollToTop:hover {
             background-color: #C9C9C9; /* Change color on hover */
             color: #000000;
         }
-    </style>
+    </style>    
 </head>
 
 
@@ -222,7 +243,7 @@ CAREER/TECH ED
 2022 BUSIM1 98 100 1.000
 2022 TAFCS 97 98 1.000
 "></textarea><br>
-                <button type="submit">Submit</button>
+                <button type="submit">Fill Table</button>
                 <button type="button" id="calculateGPA">Calculate GPA</button>
             </form>
 
@@ -354,18 +375,34 @@ CAREER/TECH ED
                 return [];
             }).filter(line => line.length > 0);
         };
-
         document.getElementById('calculateGPA').addEventListener('click', function() {
             const classTableBody = document.getElementById('classTable').querySelector('tbody');
             let totalPoints = 0;
             let totalClasses = 0;
 
-            classTableBody.childNodes.forEach(row => {
+            classTableBody.childNodes.forEach((row, index) => {
                 const semester1Grade = row.children[1].querySelector('input').value;
                 const semester2Grade = row.children[2].querySelector('input').value;
 
+                // Reset row color to default
+                row.style.backgroundColor = ''; // Remove previous color
+
                 [semester1Grade, semester2Grade].forEach(grade => {
+                    // Skip processing if the grade cell is empty
+                    if (grade === '') {
+                        return; // Skip to the next iteration
+                    }
+
                     const numericGrade = parseFloat(grade);
+
+                    // Change row color to red if the grade is not an integer
+                    if (!Number.isInteger(numericGrade)) {
+                        row.style.backgroundColor = 'red';
+                    } else if (numericGrade < 70) {
+                        // Change row color to red if the integer is less than 70
+                        row.style.backgroundColor = 'red';
+                    }
+
                     if (!isNaN(numericGrade) && numericGrade >= 0) {
                         totalClasses++;
                         const points = getGPAPoints(numericGrade, row.children[3].querySelector('select').value);
@@ -374,9 +411,10 @@ CAREER/TECH ED
                 });
             });
 
-            const gpa = totalClasses > 0 ? (totalPoints / totalClasses).toFixed(5) : 0;
+            const gpa = totalClasses > 0 ? (totalPoints / totalClasses).toFixed(3) : 0;
             document.getElementById('gpaOutput').textContent = `${gpa}`;
         });
+
 
         const getGPAPoints = (grade, weight) => {
             let points;
