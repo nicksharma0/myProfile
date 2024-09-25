@@ -405,49 +405,136 @@ body {
     }
 }
 
-/* Certifications section */
+/* Certificates grid */
 .certifications {
-    padding: 60px 10%;
-    background-color: #0c1022; /* Same dark blue background */
-    color: #eeebdd; /* Light yellow text */
     text-align: center;
-}
-
-.certifications h2 {
-    font-size: 2.5rem;
-    margin-bottom: 40px;
-    font-weight: 800;
-    color: #eeebdd; /* Light yellow */
+    padding: 2rem 0;
 }
 
 .certification-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
-    gap: 20px; /* Gap between images */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+    gap: 1.5rem; /* Gap between items */
+    padding: 0 2rem; /* Padding around the gallery */
+    max-width: 1200px; /* Max width for the gallery */
+    margin: 0 auto; /* Center align the gallery */
 }
 
 .certification-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-color: #6a1b9a; /* Dark gray background */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden;
+    text-align: center;
+    padding: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.certification-item img {
-    max-width: 100%;
-    border: 2px solid #eeebdd; /* Light yellow border */
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out;
-}
-
-.certification-item img:hover {
+.certification-item:hover {
     transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow on hover */
+}
+
+.cert-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Match image corners with item */
 }
 
 .certification-item p {
-    margin-top: 10px;
-    font-size: 1.2rem;
-    color: #eeebdd; /* Light yellow */
+    margin-top: 1rem;
+    color: #eeebdd; /* Light yellow text */
+    font-size: 1rem;
 }
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000; /* On top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content (image) */
+.modal-content {
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    z-index: 1001; /* Ensure it's above the arrows */
+}
+
+/* Add Animation */
+.modal-content {  
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    z-index: 1002; /* Ensure it's above the image */
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.3s ease;
+    user-select: none;
+    z-index: 1002; /* Ensure it's above the image */
+}
+
+.prev {
+    left: 10px;
+    border-radius: 3px 0 0 3px;
+}
+
+.next {
+    right: 10px;
+    border-radius: 0 3px 3px 0;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
 
 @media (max-width: 768px) {
     .myImage {
