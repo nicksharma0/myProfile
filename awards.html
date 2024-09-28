@@ -61,7 +61,7 @@
             background-color: #6CB4F8; /* Soft blue background on hover */
             color: #1F2235; /* Dark text color on hover */
         }
-        
+
         .certifications {
             padding: 100px 20px 20px; /* Adjust top padding for fixed header */
             text-align: center;
@@ -80,6 +80,8 @@
             gap: 15px; /* Space between items */
             max-width: 1200px; /* Limit gallery width */
             width: 100%; /* Full width for centering */
+            overflow-x: hidden; /* Prevent horizontal overflow */
+            overflow: hidden;
         }
         .certification-item {
             background-color: #3B3F52; /* Item background */
@@ -105,30 +107,65 @@
             text-align: center;
             justify-content: center;
         }
-        /* Mobile styles */
+
+        .toggle-button {
+            display: none; /* Hide by default */
+            font-size: 24px;
+            cursor: pointer;
+            margin: 0 20px;
+            color: #ffffff;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #1F2235;
+            z-index: 999;
+            padding-top: 60px;
+            transition: transform 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
+            transform: translateX(-100%); /* Hide off-screen */
+            visibility: hidden; /* Hidden when collapsed */
+            opacity: 0; /* Fully transparent when collapsed */
+        }
+
+        .sidebar.open {
+            transform: translateX(0); /* Show sidebar */
+            visibility: visible; /* Make visible when open */
+            opacity: 1; /* Fully opaque when open */
+        }
+
+        .sidebar nav a {
+            display: block; /* Ensure each link takes up full width */
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 10px; /* Adjust padding to be tighter */
+            margin: 0; /* Remove margin to prevent overflow */
+            transition: background-color 0.3s;
+        }
+
+        .sidebar nav a:hover {
+            background-color: #6CB4F8; /* Change background on hover */
+        }
+
+        /* Media queries for mobile */
         @media (max-width: 768px) {
-            nav {
-                display: none; /* Hide nav links on mobile */
-                flex-direction: column; /* Stack links vertically */
-                position: absolute; /* Position absolutely */
-                top: 60px; /* Position below header */
-                right: 0;
-                background-color: #1F2235; /* Match background */
-                width: 100%; /* Full width */
-                z-index: 1000; /* Ensure it’s on top */
+            .nav-left, .nav-right {
+                display: none; /* Hide desktop nav */
             }
-
-            nav a {
-                margin: 10px 0; /* Margin for vertical spacing */
+            .toggle-button {
+                display: block; /* Show toggle button on mobile */
             }
-
-            .mobile-menu-toggle {
-                display: block; /* Show mobile menu toggle */
-                margin-right: 20px;
+            .sidebar {
+                display: block; /* Make sidebar block for mobile */
             }
-
-            #mobile-menu-checkbox:checked + label + nav {
-                display: flex; /* Show nav when checkbox is checked */
+            .home-content {
+                padding-top: 80px; /* Adjust top padding for fixed header */
+            }
+            .certification-gallery {
+                grid-template-columns: 1fr; /* Stack items vertically on mobile */
             }
         }
     </style>
@@ -136,6 +173,7 @@
 <body>
     <header>
         <div class="nav-container">
+            <div class="toggle-button" onclick="toggleSidebar()">&#9776;</div>
             <div class="nav-left">
                 <nav>
                     <a href="information.html">Information</a>
@@ -151,6 +189,15 @@
             </div>
         </div>
     </header>
+
+    <div class="sidebar" id="sidebar">
+        <nav>
+            <a href="information.html">Information</a>
+            <a href="ap.html">Advanced Placement Courses</a>
+            <a href="awards.html">Awards & Certificates</a>
+            <a href="extracurriculars.html">Extracurriculars</a>
+        </nav>
+    </div>
 
     <section class="certifications">
         <h2>Certifications</h2>
@@ -199,69 +246,16 @@
         </div>
     </section>
 
-    <!-- Modal for full-screen image display -->
-    <div id="imageModal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="fullImage">
-        <a class="prev">&#10094;</a>
-        <a class="next">&#10095;</a>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const menuCheckbox = document.getElementById('mobile-menu-checkbox');
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('fullImage');
-            const closeModal = document.querySelector('.close');
-            const prevButton = document.querySelector('.prev');
-            const nextButton = document.querySelector('.next');
-
-            const images = Array.from(document.querySelectorAll('.cert-image'));
-            let currentIndex = 0;
-
-            menuCheckbox.addEventListener('change', function () {
-                if (this.checked) {
-                    document.querySelector('nav').style.display = 'flex';
-                } else {
-                    document.querySelector('nav').style.display = 'none';
-                }
-            });
-
-            images.forEach((img, index) => {
-                img.addEventListener('click', function () {
-                    currentIndex = index;
-                    modal.style.display = 'flex';
-                    modalImg.src = this.src;
-                });
-            });
-
-            closeModal.addEventListener('click', function () {
-                modal.style.display = 'none';
-            });
-
-            prevButton.addEventListener('click', function () {
-                currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-                modalImg.src = images[currentIndex].src;
-            });
-
-            nextButton.addEventListener('click', function () {
-                currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-                modalImg.src = images[currentIndex].src;
-            });
-
-            // Hide modal if clicked outside of image
-            modal.addEventListener('click', function (event) {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-        });
-    </script>
-    
     <footer class="footer">
         <div class="footer-content">
-            © 2024 Nick Sharma. All rights reserved.
+            &copy; 2024 Nick Sharma. All Rights Reserved.
         </div>
     </footer>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
 </body>
 </html>
