@@ -8,13 +8,13 @@
     <style>
         body {
             font-family: 'Montserrat', sans-serif; /* Changed font */
-            background-color: #ececec;
+            background-color: #2D3142;
             color: #000000;
             margin: 20px;
         }
     
         .header {
-            background-color: #204321; /* Green header */
+            background-color: #1F2235; /* Green header */
             color: #ffffff;
             height: 40px;
             padding: 30px;
@@ -46,45 +46,66 @@
             padding-right: 20px;
             height: 40px;
         }
+
+        #addRow{
+            border: 1px solid #5A9BCF;
+        }
     
         textarea {
             width: 100%;
-            height: 200px;
+            max-height: 150px; /* Set a maximum height */
+            height: 200px; /* Default height */
             font-size: 16px;
-            border: 1px solid #C9C9C9;
+            border: 1px solid #5A9BCF;
             border-radius: 4px;
-            background-color: #ffffff;
-            color: #000000;
-            resize: none;
+            background-color: #1F2235;
+            color: #5f8fb6;
+            resize: vertical; /* Allows vertical resizing */
+            box-sizing: border-box; /* Includes padding and border in element's total width and height */
+            overflow: auto; /* Allow scrolling */
+            -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer and Edge */
+            scrollbar-width: none; /* Hide scrollbar in Firefox */
         }
+
+        textarea::placeholder {
+            color: #5f8fb6; /* Change to your desired placeholder color */
+            opacity: 1; /* Ensure full opacity */
+        }
+
+        textarea::-webkit-scrollbar {
+            display: none; /* Hide the scrollbar in WebKit browsers (Chrome, Safari) */
+        }
+
     
         button {
             width: 100%;
             margin-top: 10px;
             padding: 20px 20px; /* Increased the padding */
             font-size: 20px;
-            background-color: #204321;
+            background-color: #1F2235;
             color: #ffffff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
         }
     
         button:hover {
-            background-color: #C9C9C9;
+            background-color: #5A9BCF;
             color: #000000;
+            transform: scale(1.02);
         }
     
         .outputSection {
             margin-top: 20px;
-            height: 500px;
+            height: 220px;
             padding: 10px;
-            border: 1px solid #C9C9C9;
             border-radius: 4px;
-            background-color: #ffffff;
-            color: #000000;
+            background-color: #1F2235;
+            color: #5A9BCF;
             text-align: center;
             font-size: 25px;
+            border: 1px solid #5A9BCF;
         }
     
         table {
@@ -97,18 +118,18 @@
         }
     
         th, td {
-            border: 1px solid #C9C9C9;
+            border: 1px solid #5A9BCF;
             padding: 8px;
             text-align: center;
         }
     
         th {
-            background-color: #204321;
+            background-color: #1F2235;
             color: #ffffff;
         }
     
         td {
-            border: 1px solid #C9C9C9;
+            border: 1px solid #5A9BCF;
             padding: 8px;
             justify-content: center; /* Center horizontally */
             align-items: center; /* Center vertically */
@@ -118,10 +139,10 @@
         td input, td select {
             width: 100%;
             padding: 5px;
-            border: 1px solid #C9C9C9;
+            border: 1px solid #5A9BCF;
             border-radius: 4px;
             background-color: #ffffff;
-            color: #000000;
+            color: #5A9BCF;
             box-sizing: border-box; /* Prevents overflow */
             text-align: center;
             font-family: 'Montserrat', sans-serif;
@@ -129,11 +150,11 @@
         }
     
         tr:nth-child(odd) {
-            background-color: #f5f5dc; /* Light tan color */
+            background-color: #292c46; /* Light tan color */
         }
 
         tr:nth-child(even) {
-            background-color: #ffffff; /* White color */
+            background-color: #292c46; /* White color */
         }
 
         /* Style for the text input fields */
@@ -150,23 +171,26 @@
         }
     
         #gpaOutput {
-            font-size: 100px; /* Make the GPA number larger */
-            margin-top: 125px; /* Space above the GPA number */
+            font-size: 50px; /* Make the GPA number larger */
+            margin-top: 1%; /* Space above the GPA number */
         }
-    
-        footer {
+
+        .footer {
+            margin-top: auto;
+            background-color: #1F2235;
+            padding: 10px;
+            width: 100%;
             text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #204321;
-            font-style: italic; /* Footer styling */
+        }
+        .footer-content {
+            color: #ffffff;
         }
     
         #scrollToTop {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background-color: #204321; /* Button color */
+            background-color: #1F2235; /* Button color */
             color: white; /* Text color */
             padding: 10px;
             border-radius: 50%;
@@ -178,15 +202,16 @@
         }
     
         #scrollToTop:hover {
-            background-color: #C9C9C9; /* Change color on hover */
+            background-color: #5A9BCF; /* Change color on hover */
             color: #000000;
+            transform: scale(1.05);
         }
     </style>    
 </head>
 
 
 <body>
-    <div class="disclaimer" style="background-color: #fff2cc; border: 2px solid red; color: red; padding: 15px; margin-bottom: 20px; text-align: center; font-weight: bold; width: 100%; box-sizing: border-box;">
+    <div class="disclaimer" style="background-color: #1F2235; border: 2px solid red; color: red; padding: 15px; margin-bottom: 20px; text-align: center; font-weight: bold; width: 100%; box-sizing: border-box;">
         This is a STUDENT made calculator, it is not official. It's possible the calculated GPA is not accurate; for the best results, make sure the table accurately represents your transcript.
     </div>
     
@@ -258,10 +283,13 @@ CAREER/TECH ED
         <h2>Combined Plain Text Output</h2>
         <pre id="plainTextOutput" style="display: none;">The plain text output will be displayed here.</pre>
     </div>
-
-    <footer>
-        Created by <a href="https://nick-sharma.com/" target="_blank" rel="noopener noreferrer">Nick Sharma</a>, Class of 2025
+    <br><br><br>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Created by <a href="https://www.nick-sharma.com/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #5A9BCF; font-size: 17px;">Nick Sharma</a> Class of 2025</p>
+        </div>
     </footer>
+    
 
     <script>
         const gpaScale = {
