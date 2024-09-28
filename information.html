@@ -5,53 +5,169 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nick Sharma | Academic Information</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2D3142;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the body takes up full height */
+            align-items: center; /* Center all content horizontally */
+        }
+        header {
+            width: 100%;
+            background-color: #1F2235;
+            padding: 10px 0; /* Reduced padding for a sleeker look */
+            display: flex;
+            justify-content: center; /* Center all items horizontally */
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center; /* Center items vertically */
+            width: 100%; /* Full width for nav container */
+            justify-content: space-between; /* Space between left, center and right */
+            max-width: 1200px; /* Max width for better alignment */
+            margin: 0 auto; /* Center container */
+        }
+        .nav-left,
+        .nav-right {
+            display: flex;
+            margin: 0 72px; /* Adjust this value to decrease spacing */
+        }
+        a.logo {
+            color: #6CB4F8; /* Soft blue for logo */
+            font-size: 24px;
+            margin: 0 20px; /* Margins for spacing */
+            text-decoration: none;
+            font-weight: 700; /* Bold font for logo */
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 15px; /* Added padding for clickable area */
+            border-radius: 5px; /* Rounded corners for buttons */
+            transition: background-color 0.3s, color 0.3s;
+        }
+        nav a:hover {
+            background-color: #6CB4F8; /* Soft blue background on hover */
+            color: #1F2235; /* Dark text color on hover */
+        }
+        .home-content {
+            padding: 100px 20px 20px; /* Adjust top padding for fixed header */
+            text-align: center;
+            flex: 1; /* Allow this section to grow */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .home-content h1 {
+            font-size: 36px;
+            margin-bottom: 15px; /* Add space below the title */
+        }
+        .home-content p {
+            max-width: 600px; /* Limit paragraph width */
+            margin: 10px 0; /* Adjust margin */
+            line-height: 1.5; /* Increase line height for readability */
+            transition: color 0.3s ease, transform 0.3s ease;
+            background-color: #1F2235; 
+            border: 1px solid #6CB4F8; /* Soft blue border */
+            border-radius: 8px; /* Rounded corners */
+            padding: 20px;
+        }
+
+        /* Change text color on hover */
+        .home-content p:hover {
+            background-color: #6CB4F8; /* Soft blue on hover */
+            color: #1F2235; /* Dark text on hover */
+            transform: translateY(-5px); /* Slight lift on hover */
+            border: 1px solid #6CB4F8; /* Soft blue border */
+            border-radius: 8px; /* Rounded corners */
+        }
+        .academic-stats {
+            margin-top: 20px; /* Space between sections */
+            text-align: center; /* Align stats to the center */
+            max-width: 600px; /* Limit stats width */
+            padding: 15px; /* Padding for the box */
+            border-radius: 8px; /* Rounded corners */
+            width: 100%; /* Full width for centering */
+            transition: background-color 0.3s, transform 0.3s;
+            background-color: #1F2235; /* Dark background to match the header */
+            border: 1px solid #6CB4F8; /* Soft blue border */
+        }
+
+        /* Subtle lift and color change on hover */
+        .academic-stats:hover {
+            background-color: #6CB4F8; /* Soft blue on hover */
+            color: #1F2235; /* Dark text on hover */
+            transform: translateY(-5px); /* Slight lift on hover */
+        }
+        .footer {
+            background-color: #1F2235;
+            padding: 20px; /* Increased padding for a larger footer */
+            text-align: center;
+            justify-content: center;
+            margin-top: auto; /* Push footer to the bottom */
+            width: 100%; /* Full width for footer */
+        }
+        .footer-content {
+            color: #ffffff;
+            font-size: 16px; /* Adjust font size for better visibility */
+            text-align: center;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
-    <header class='header showRight'>
-        <a href="index.html" class="logo"><span class="difColor">N</span>ick.</a>
-        <div class="mobile-menu-toggle">
-            <input type="checkbox" id="mobile-menu-checkbox">
-            <label for="mobile-menu-checkbox">
-                <div class="mobile-menu-icon"></div>
-            </label>
+    <header>
+        <div class="nav-container">
+            <div class="nav-left">
+                <nav>
+                    <a href="information.html">Information</a>
+                    <a href="ap.html">Advanced Placement Courses</a>
+                </nav>
+            </div>
+            <a href="index.html" class="logo">NICK</a>
+            <div class="nav-right">
+                <nav>
+                    <a href="awards.html">Awards & Certificates</a>
+                    <a href="extracurriculars.html">Extracurriculars</a>
+                </nav>
+            </div>
         </div>
-        <nav class="navbar">
-            <a href="information.html" class="showRight">Information</a>
-            <a href="ap.html" class="showRight">Advanced Placement Courses</a>
-            <a href="awards.html" class="showRight">Awards & Certificates</a>
-            <a href="extracurriculars.html" class="showRight">Extracurriculars</a>
-        </nav>
     </header>
 
-    <nav class="sidebar">
-        <a href="information.html" class="showRight">Information</a>
-        <a href="ap.html" class="showRight">Advanced Placement Courses</a>
-        <a href="awards.html" class="showRight">Awards & Certificates</a>
-        <a href="extracurriculars.html" class="showRight">Extracurriculars</a>
-    </nav>
-
     <div class="home-content">
-        <h1 class="showRight">Header</h1>
-        <h3>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit porro sit ab provident ipsa odio natus dolorem alias eaque voluptatum, quam molestias ipsam aperiam saepe quisquam harum atque. Omnis, magni.</h3>
+        <h1>Information</h1>
+        <i class='bx bxs-info-circle' style="font-size: 125px; color: #6CB4F8; margin-bottom: 15px;"></i> <!-- Icon moved below the title -->
+        <p>
+            Hello! My name is Nick Sharma. I am Nepalese American, born and raised in Plano, Texas.
+            I am currently looking into studying cybersecurity, but I also have many other interests
+            including sports, music, coding, and video games.
+        </p>
+        
+        <div class="academic-stats">
+            <strong>Academic Stats:</strong><br>
+            SAT Score: 1400<br>
+            Weighted GPA: 5.113<br>
+            Unweighted GPA: 4.0<br>
+            High School Rank: 72/726 (Top 10%)
+        </div>
     </div>
 
-    <script>
-        // JavaScript function to toggle mobile sidebar
-        document.addEventListener('DOMContentLoaded', function () {
-            const menuCheckbox = document.getElementById('mobile-menu-checkbox');
-            const sidebar = document.querySelector('.sidebar');
-
-            menuCheckbox.addEventListener('change', function () {
-                if (this.checked) {
-                    sidebar.classList.add('sidebar-open');
-                } else {
-                    sidebar.classList.remove('sidebar-open');
-                }
-            });
-        });
-    </script>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Nick Sharma. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
