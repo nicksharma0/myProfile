@@ -93,48 +93,107 @@
         }
 
         .ap-courses {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Flexible grid layout */
-    gap: 20px; /* Spacing between boxes */
-    padding: 20px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto; /* Center the grid */
-}
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Flexible grid layout */
+            gap: 20px; /* Spacing between boxes */
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto; /* Center the grid */
+        }
 
-.course-box {
-    background-color: #1F2235; /* Dark background to match the header */
-    border: 1px solid #6CB4F8; /* Soft blue border */
-    border-radius: 10px; /* Smooth rounded corners */
-    padding: 20px;
-    color: #ffffff;
-    text-align: center;
-    font-size: 18px;
-    position: relative;
-    transition: transform 0.3s, background-color 0.3s;
-}
+        .course-box {
+            background-color: #1F2235; /* Dark background to match the header */
+            border: 1px solid #6CB4F8; /* Soft blue border */
+            border-radius: 10px; /* Smooth rounded corners */
+            padding: 20px;
+            color: #ffffff;
+            text-align: center;
+            font-size: 18px;
+            position: relative;
+            transition: transform 0.3s, background-color 0.3s;
+        }
 
-.course-box:hover {
-    background-color: #6CB4F8; /* Soft blue on hover */
-    color: #1F2235; /* Dark text on hover */
-    transform: translateY(-5px); /* Subtle lift on hover */
-}
+        .course-box:hover {
+            background-color: #6CB4F8; /* Soft blue on hover */
+            color: #1F2235; /* Dark text on hover */
+            transform: translateY(-5px); /* Subtle lift on hover */
+        }
 
-.course-box::after {
-    content: attr(data-score);
-    display: block;
-    font-size: 14px;
-    margin-top: 10px;
-    color: #1F2235; /* Soft blue color for the score */
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.3s;
-}
+        .course-box::after {
+            content: attr(data-score);
+            display: block;
+            font-size: 14px;
+            margin-top: 10px;
+            color: #1F2235; /* Soft blue color for the score */
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.3s;
+        }
 
-.course-box:hover::after {
-    opacity: 1; /* Score becomes visible on hover */
-}
+        .course-box:hover::after {
+            opacity: 1; /* Score becomes visible on hover */
+        }
 
+        .toggle-button {
+            display: none; /* Hide by default */
+            font-size: 24px;
+            cursor: pointer;
+            margin: 0 20px;
+            color: #ffffff;
+        }
 
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #1F2235;
+            z-index: 999;
+            padding-top: 60px;
+            transition: transform 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
+            transform: translateX(-100%); /* Hide off-screen */
+            visibility: hidden; /* Hidden when collapsed */
+            opacity: 0; /* Fully transparent when collapsed */
+        }
+
+        .sidebar.open {
+            transform: translateX(0); /* Show sidebar */
+            visibility: visible; /* Make visible when open */
+            opacity: 1; /* Fully opaque when open */
+        }
+
+        .sidebar nav a {
+            display: block; /* Ensure each link takes up full width */
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 10px; /* Adjust padding to be tighter */
+            margin: 0; /* Remove margin to prevent overflow */
+            transition: background-color 0.3s;
+        }
+
+        .sidebar nav a:hover {
+            background-color: #6CB4F8; /* Change background on hover */
+        }
+
+        /* Media queries for mobile */
+        @media (max-width: 768px) {
+            .nav-left, .nav-right {
+                display: none; /* Hide desktop nav */
+            }
+            .toggle-button {
+                display: block; /* Show toggle button on mobile */
+            }
+            .sidebar {
+                display: block; /* Make sidebar block for mobile */
+            }
+            .home-content {
+                padding-top: 80px; /* Adjust top padding for fixed header */
+            }
+            .certification-gallery {
+                grid-template-columns: 1fr; /* Stack items vertically on mobile */
+            }
+        }
 
     </style>
     
@@ -142,6 +201,7 @@
 <body>
     <header>
         <div class="nav-container">
+            <div class="toggle-button" onclick="toggleSidebar()">&#9776;</div>
             <div class="nav-left">
                 <nav>
                     <a href="information.html">Information</a>
@@ -158,12 +218,14 @@
         </div>
     </header>
 
-    <nav class="sidebar">
-        <a href="information.html" class="showRight">Information</a>
-        <a href="ap.html" class="showRight">Advanced Placement Courses</a>
-        <a href="awards.html" class="showRight">Awards & Certificates</a>
-        <a href="extracurriculars.html" class="showRight">Extracurriculars</a>
-    </nav>
+    <div class="sidebar" id="sidebar">
+        <nav>
+            <a href="information.html">Information</a>
+            <a href="ap.html">Advanced Placement Courses</a>
+            <a href="awards.html">Awards & Certificates</a>
+            <a href="extracurriculars.html">Extracurriculars</a>
+        </nav>
+    </div>
 
     <div class="home-content">
         <h1>Advanced Placement Courses</h1>
@@ -190,18 +252,9 @@
 
     <script>
         // JavaScript function to toggle mobile sidebar
-        document.addEventListener('DOMContentLoaded', function () {
-            const menuCheckbox = document.getElementById('mobile-menu-checkbox');
-            const sidebar = document.querySelector('.sidebar');
-
-            menuCheckbox.addEventListener('change', function () {
-                if (this.checked) {
-                    sidebar.classList.add('sidebar-open');
-                } else {
-                    sidebar.classList.remove('sidebar-open');
-                }
-            });
-        });
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
     </script>
 
     <footer class="footer">
