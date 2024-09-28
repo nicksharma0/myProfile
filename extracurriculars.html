@@ -177,11 +177,74 @@
             color: #ffffff;
             font-size: 16px;
         }
+        .toggle-button {
+            display: none; /* Hide by default */
+            font-size: 24px;
+            cursor: pointer;
+            margin: 0 20px;
+            color: #ffffff;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #1F2235;
+            z-index: 999;
+            padding-top: 60px;
+            transition: transform 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
+            transform: translateX(-100%); /* Hide off-screen */
+            visibility: hidden; /* Hidden when collapsed */
+            opacity: 0; /* Fully transparent when collapsed */
+        }
+
+        .sidebar.open {
+            transform: translateX(0); /* Show sidebar */
+            visibility: visible; /* Make visible when open */
+            opacity: 1; /* Fully opaque when open */
+        }
+
+        .sidebar nav a {
+            display: block; /* Ensure each link takes up full width */
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 10px; /* Adjust padding to be tighter */
+            margin: 0; /* Remove margin to prevent overflow */
+            transition: background-color 0.3s;
+        }
+
+        .sidebar nav a:hover {
+            background-color: #6CB4F8; /* Change background on hover */
+        }
+
+        /* Media queries for mobile */
+        @media (max-width: 768px) {
+            .nav-left, .nav-right {
+                display: none; /* Hide desktop nav */
+            }
+            .toggle-button {
+                display: block; /* Show toggle button on mobile */
+            }
+            .sidebar {
+                display: block; /* Make sidebar block for mobile */
+            }
+            .home-content {
+                padding-top: 80px; /* Adjust top padding for fixed header */
+            }
+            .certification-gallery {
+                grid-template-columns: 1fr; /* Stack items vertically on mobile */
+            }
+        }
+
     </style>
+    
 </head>
 <body>
     <header>
         <div class="nav-container">
+            <div class="toggle-button" onclick="toggleSidebar()">&#9776;</div>
             <div class="nav-left">
                 <nav>
                     <a href="information.html">Information</a>
@@ -197,6 +260,15 @@
             </div>
         </div>
     </header>
+
+    <div class="sidebar" id="sidebar">
+        <nav>
+            <a href="information.html">Information</a>
+            <a href="ap.html">Advanced Placement Courses</a>
+            <a href="awards.html">Awards & Certificates</a>
+            <a href="extracurriculars.html">Extracurriculars</a>
+        </nav>
+    </div>
 
     <div class="home-content">
         <h1>Extracurriculars / Projects</h1>
@@ -280,7 +352,7 @@
                         <i class='bx bx-right-arrow' onclick="nextSlide(this)"></i>
                     </div>
                 </div>
-                <div class="activity-name">Ecommerce Brand</div>
+                <div class="activity-name">Elite Designs Market</div>
                 <div class="activity-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod, elit ut dignissim ultricies.</div>
                 <span class="read-more" onclick="toggleDescription(this)">Read More</span>
             </div>
@@ -295,7 +367,7 @@
                         <i class='bx bx-right-arrow' onclick="nextSlide(this)"></i>
                     </div>
                 </div>
-                <div class="activity-name">Custom Made GPA Calculator</div>
+                <div class="activity-name"><a href="https://nick-sharma.com/gpa" style=" color: #6CB4F8; font-size: 24px; font-weight: 700;">Custom Made GPA Calculator</a></div>
                 <div class="activity-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod, elit ut dignissim ultricies.</div>
                 <span class="read-more" onclick="toggleDescription(this)">Read More</span>
             </div>
@@ -324,6 +396,10 @@
     </footer>
 
     <script>
+        // JavaScript function to toggle mobile sidebar
+            function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
         const carousels = document.querySelectorAll('.carousel');
         carousels.forEach(carousel => {
             let currentIndex = 0;
