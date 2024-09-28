@@ -5,39 +5,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nick Sharma | Awards and Certificates</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2D3142;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the body takes up full height */
+            align-items: center; /* Center all content horizontally */
+        }
+        header {
+            width: 100%;
+            background-color: #1F2235;
+            padding: 10px 0; /* Reduced padding for a sleeker look */
+            display: flex;
+            justify-content: center; /* Center all items horizontally */
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center; /* Center items vertically */
+            width: 100%; /* Full width for nav container */
+            justify-content: space-between; /* Space between left, center and right */
+            max-width: 1200px; /* Max width for better alignment */
+            margin: 0 auto; /* Center container */
+        }
+        .nav-left,
+        .nav-right {
+            display: flex;
+            margin: 0 72px; /* Adjust this value to decrease spacing */
+        }
+        a.logo {
+            color: #6CB4F8; /* Soft blue for logo */
+            font-size: 24px;
+            margin: 0 20px; /* Margins for spacing */
+            text-decoration: none;
+            font-weight: 700; /* Bold font for logo */
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 15px; /* Added padding for clickable area */
+            border-radius: 5px; /* Rounded corners for buttons */
+            transition: background-color 0.3s, color 0.3s;
+        }
+        nav a:hover {
+            background-color: #6CB4F8; /* Soft blue background on hover */
+            color: #1F2235; /* Dark text color on hover */
+        }
+        
+        .certifications {
+            padding: 100px 20px 20px; /* Adjust top padding for fixed header */
+            text-align: center;
+            flex: 1; /* Allow this section to grow */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .certifications h2 {
+            font-size: 36px;
+            margin-bottom: 15px; /* Add space below the title */
+        }
+        .certification-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid layout */
+            gap: 15px; /* Space between items */
+            max-width: 1200px; /* Limit gallery width */
+            width: 100%; /* Full width for centering */
+        }
+        .certification-item {
+            background-color: #3B3F52; /* Item background */
+            border-radius: 8px; /* Rounded corners */
+            padding: 15px; /* Padding inside item */
+            text-align: center; /* Center text */
+        }
+        .cert-image {
+            max-width: 100%; /* Responsive image */
+            border-radius: 5px; /* Rounded image corners */
+        }
+        .footer {
+            background-color: #1F2235;
+            padding: 20px; /* Increased padding for a larger footer */
+            text-align: center;
+            justify-content: center;
+            margin-top: auto; /* Push footer to the bottom */
+            width: 100%; /* Full width for footer */
+        }
+        .footer-content {
+            color: #ffffff;
+            font-size: 16px; /* Adjust font size for better visibility */
+            text-align: center;
+            justify-content: center;
+        }
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            nav {
+                display: none; /* Hide nav links on mobile */
+                flex-direction: column; /* Stack links vertically */
+                position: absolute; /* Position absolutely */
+                top: 60px; /* Position below header */
+                right: 0;
+                background-color: #1F2235; /* Match background */
+                width: 100%; /* Full width */
+                z-index: 1000; /* Ensure it’s on top */
+            }
+
+            nav a {
+                margin: 10px 0; /* Margin for vertical spacing */
+            }
+
+            .mobile-menu-toggle {
+                display: block; /* Show mobile menu toggle */
+                margin-right: 20px;
+            }
+
+            #mobile-menu-checkbox:checked + label + nav {
+                display: flex; /* Show nav when checkbox is checked */
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class='header showRight'>
-        <a href="index.html" class="logo"><span class="difColor">N</span>ick.</a>
-        <div class="mobile-menu-toggle">
-            <input type="checkbox" id="mobile-menu-checkbox">
-            <label for="mobile-menu-checkbox">
-                <div class="mobile-menu-icon"></div>
-            </label>
+    <header>
+        <div class="nav-container">
+            <div class="nav-left">
+                <nav>
+                    <a href="information.html">Information</a>
+                    <a href="ap.html">Advanced Placement Courses</a>
+                </nav>
+            </div>
+            <a href="index.html" class="logo">NICK</a>
+            <div class="nav-right">
+                <nav>
+                    <a href="awards.html">Awards & Certificates</a>
+                    <a href="extracurriculars.html">Extracurriculars</a>
+                </nav>
+            </div>
         </div>
-        <nav class="navbar">
-            <a href="information.html" class="showRight">Information</a>
-            <a href="ap.html" class="showRight">Advanced Placement Courses</a>
-            <a href="awards.html" class="showRight">Awards & Certificates</a>
-            <a href="extracurriculars.html" class="showRight">Extracurriculars</a>
-        </nav>
     </header>
 
-    <nav class="sidebar">
-        <a href="information.html" class="showRight">Information</a>
-        <a href="ap.html" class="showRight">Advanced Placement Courses</a>
-        <a href="awards.html" class="showRight">Awards & Certificates</a>
-        <a href="extracurriculars.html" class="showRight">Extracurriculars</a>
-    </nav>
-
-    <section class="certifications showRight">
+    <section class="certifications">
         <h2>Certifications</h2>
-        <br>
+        <i class='bx bxs-award' style="font-size: 150px; color: #6CB4F8; margin-bottom: 15px;"></i> <!-- Certification icon -->
         <div class="certification-gallery">
-            <!-- Example image, add more as needed -->
             <div class="certification-item">
                 <img src="./Images/core1-1.png" alt="Certification 1" class="cert-image">
                 <p>IBM: Hardware and Network Troubleshooting</p>
@@ -92,7 +210,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const menuCheckbox = document.getElementById('mobile-menu-checkbox');
-            const sidebar = document.querySelector('.sidebar');
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('fullImage');
             const closeModal = document.querySelector('.close');
@@ -104,9 +221,9 @@
 
             menuCheckbox.addEventListener('change', function () {
                 if (this.checked) {
-                    sidebar.classList.add('sidebar-open');
+                    document.querySelector('nav').style.display = 'flex';
                 } else {
-                    sidebar.classList.remove('sidebar-open');
+                    document.querySelector('nav').style.display = 'none';
                 }
             });
 
@@ -140,5 +257,11 @@
             });
         });
     </script>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            © 2024 Nick Sharma. All rights reserved.
+        </div>
+    </footer>
 </body>
 </html>
