@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nick Sharma | Awards and Certificates</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2D3142;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the body takes up full height */
+            align-items: center; /* Center all content horizontally */
+        }
+        header {
+            width: 100%;
+            background-color: #1F2235;
+            padding: 10px 0; /* Reduced padding for a sleeker look */
+            display: flex;
+            justify-content: center; /* Center all items horizontally */
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center; /* Center items vertically */
+            width: 100%; /* Full width for nav container */
+            justify-content: space-between; /* Space between left, center and right */
+            max-width: 1200px; /* Max width for better alignment */
+            margin: 0 auto; /* Center container */
+        }
+        .nav-left,
+        .nav-right {
+            display: flex;
+            margin: 0 72px; /* Adjust this value to decrease spacing */
+        }
+        a.logo {
+            color: #6CB4F8; /* Soft blue for logo */
+            font-size: 24px;
+            margin: 0 20px; /* Margins for spacing */
+            text-decoration: none;
+            font-weight: 700; /* Bold font for logo */
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 15px; /* Added padding for clickable area */
+            border-radius: 5px; /* Rounded corners for buttons */
+            transition: background-color 0.3s, color 0.3s;
+        }
+        nav a:hover {
+            background-color: #6CB4F8; /* Soft blue background on hover */
+            color: #1F2235; /* Dark text color on hover */
+        }
+
+        .certifications {
+            padding: 100px 20px 20px; /* Adjust top padding for fixed header */
+            text-align: center;
+            flex: 1; /* Allow this section to grow */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .certifications h2 {
+            font-size: 36px;
+            margin-bottom: 15px; /* Add space below the title */
+        }
+        .certification-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid layout */
+            gap: 15px; /* Space between items */
+            max-width: 1200px; /* Limit gallery width */
+            width: 100%; /* Full width for centering */
+            overflow-x: hidden; /* Prevent horizontal overflow */
+            overflow: hidden;
+        }
+        .certification-item {
+            background-color: #3B3F52; /* Item background */
+            border-radius: 8px; /* Rounded corners */
+            padding: 15px; /* Padding inside item */
+            text-align: center; /* Center text */
+        }
+        .cert-image {
+            max-width: 100%; /* Responsive image */
+            border-radius: 5px; /* Rounded image corners */
+        }
+        .footer {
+            background-color: #1F2235;
+            padding: 20px; /* Increased padding for a larger footer */
+            text-align: center;
+            justify-content: center;
+            margin-top: auto; /* Push footer to the bottom */
+            width: 100%; /* Full width for footer */
+        }
+        .footer-content {
+            color: #ffffff;
+            font-size: 16px; /* Adjust font size for better visibility */
+            text-align: center;
+            justify-content: center;
+        }
+
+        .toggle-button {
+            display: none; /* Hide by default */
+            font-size: 24px;
+            cursor: pointer;
+            margin: 0 20px;
+            color: #ffffff;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #1F2235;
+            z-index: 999;
+            padding-top: 60px;
+            transition: transform 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
+            transform: translateX(-100%); /* Hide off-screen */
+            visibility: hidden; /* Hidden when collapsed */
+            opacity: 0; /* Fully transparent when collapsed */
+        }
+
+        .sidebar.open {
+            transform: translateX(0); /* Show sidebar */
+            visibility: visible; /* Make visible when open */
+            opacity: 1; /* Fully opaque when open */
+        }
+
+        .sidebar nav a {
+            display: block; /* Ensure each link takes up full width */
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 10px; /* Adjust padding to be tighter */
+            margin: 0; /* Remove margin to prevent overflow */
+            transition: background-color 0.3s;
+        }
+
+        .sidebar nav a:hover {
+            background-color: #6CB4F8; /* Change background on hover */
+        }
+
+        /* Media queries for mobile */
+        @media (max-width: 768px) {
+            .nav-left, .nav-right {
+                display: none; /* Hide desktop nav */
+            }
+            .toggle-button {
+                display: block; /* Show toggle button on mobile */
+            }
+            .sidebar {
+                display: block; /* Make sidebar block for mobile */
+            }
+            .home-content {
+                padding-top: 80px; /* Adjust top padding for fixed header */
+            }
+            .certification-gallery {
+                grid-template-columns: 1fr; /* Stack items vertically on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="toggle-button" onclick="toggleSidebar()">&#9776;</div>
+            <div class="nav-left">
+                <nav>
+                    <a href="information.html">Information</a>
+                    <a href="ap.html">Advanced Placement Courses</a>
+                </nav>
+            </div>
+            <a href="index.html" class="logo">NICK</a>
+            <div class="nav-right">
+                <nav>
+                    <a href="awards.html">Awards & Certificates</a>
+                    <a href="extracurriculars.html">Extracurriculars</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="sidebar" id="sidebar">
+        <nav>
+            <a href="information.html">Information</a>
+            <a href="ap.html">Advanced Placement Courses</a>
+            <a href="awards.html">Awards & Certificates</a>
+            <a href="extracurriculars.html">Extracurriculars</a>
+        </nav>
+    </div>
+
+    <section class="certifications">
+        <h2>Certifications</h2>
+        <i class='bx bxs-award' style="font-size: 150px; color: #6CB4F8; margin-bottom: 15px;"></i> <!-- Certification icon -->
+        <div class="certification-gallery">
+            <div class="certification-item">
+                <img src="./Images/core1-1.png" alt="Certification 1" class="cert-image">
+                <p>IBM: Hardware and Network Troubleshooting</p>
+            </div>
+            <div class="certification-item">
+                <img src="./Images/foundations-1.png" alt="Certification 2" class="cert-image">
+                <p>Google: Foundations of Cybersecurity</p>
+            </div>
+            <div class="certification-item">
+                <img src="./Images/managesecrisks-1.png" alt="Certification 3" class="cert-image">
+                <p>Google: Manage Security Risks</p>
+            </div>
+            <div class="certification-item">
+                <img src="./Images/networksandsec-1.png" alt="Certification 4" class="cert-image">
+                <p>Google: Networks and Network Security</p>
+            </div>
+            <div class="certification-item">
+                <img src="./Images/linuxcert.png" alt="Certification 5" class="cert-image">
+                <p>Google: Linux and SQL</p>
+            </div>
+            <div class="certification-item">
+                <img src="./Images/gdi.png" alt="Certification 6" class="cert-image">
+                <p>Adobe: Graphic Design & Illustration Using Adobe Illustrator</p>
+            </div>
+            <div class="certification-item">
+                <img src="./Images/visusaldesign.png" alt="Certification 7" class="cert-image">
+                <p>Adobe: Visual Design</p>
+            </div>
+            <div class="certification-item">
+                <img src="./Images/visualdesignphotoshop.png" alt="Certification 8" class="cert-image">
+                <p>Adobe: Visual Design Using Photoshop</p>
+            </div>
+            <div class="certification-item">
+                <img src="./Images/word2019.png" alt="Certification 9" class="cert-image">
+                <p>Microsoft: 2019 Word Associate</p>
+            </div>
+            <div class="certification-item">
+                <img src="./Images/pp2019.png" alt="Certification 10" class="cert-image">
+                <p>Microsoft: 2019 PowerPoint Associate</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            &copy; 2024 Nick Sharma. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

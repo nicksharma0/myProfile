@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nick Sharma</title>
+    <link rel="icon" type="image/png" href="./Images/pfp.png">
+
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="Nick Sharma | Home">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nick-sharma.com/">
+    <meta property="og:image" content="https://i.imgur.com/VNye87M.png">
+    <meta property="og:description" content="Welcome to my profile.">
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2D3142;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            width: 100%;
+            background-color: #1F2235;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .nav-left,
+        .nav-right {
+            display: flex;
+        }
+        a.logo {
+            color: #6CB4F8;
+            font-size: 24px;
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        nav a:hover {
+            background-color: #6CB4F8;
+            color: #1F2235;
+        }
+        .home-content {
+            padding-top: 100px;
+            text-align: center;
+        }
+        .home-content h1 {
+            font-size: 36px;
+        }
+        .home-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .profile-container {
+            position: relative;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        .profile-container img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+        }
+        .spinner-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150px;
+            height: 150px;
+            border: 5px solid transparent;
+            border-top-color: #6CB4F8;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+            z-index: -1;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .info {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .info-header {
+            margin-bottom: 20px;
+        }
+        .info-box {
+            background-color: #3B3F52;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+            width: 80%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .info-box a {
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .info-box i {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        .info-box:hover {
+            background-color: #5A5E75;
+        }
+        .footer {
+            margin-top: auto;
+            background-color: #1F2235;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+        }
+        .footer-content {
+            color: #ffffff;
+        }
+        #back-to-top-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #6CB4F8;
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: none;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        #back-to-top-btn:hover {
+            background-color: #5A9BCF;
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .email-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6CB4F8;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .email-button:hover {
+            background-color: #5A9BCF;
+            transform: scale(1.05);
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            nav a {
+                margin: 0 5px;
+                padding: 8px 10px;
+                font-size: 14px;
+            }
+            .home-content h1 {
+                font-size: 28px;
+            }
+            .home-content h3 {
+                font-size: 18px;
+            }
+            .profile-container img {
+                width: 120px;
+                height: 120px;
+            }
+            .spinner-border {
+                width: 120px;
+                height: 120px;
+            }
+            .info-box {
+                width: 90%;
+            }
+            .nav-left,
+            .nav-right {
+                display: none; /* Hide nav links on small screens */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="nav-left">
+                <nav>
+                    <a href="information.html">Information</a>
+                    <a href="ap.html">Advanced Placement Courses</a>
+                </nav>
+            </div>
+            <a href="index.html" class="logo">NICK</a>
+            <div class="nav-right">
+                <nav>
+                    <a href="awards.html">Awards & Certificates</a>
+                    <a href="extracurriculars.html">Extracurriculars</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="home-content">
+        <h1>Hello, I'm <span style="color: #6CB4F8;">Nick</span> Sharma.</h1>
+        <h3>Student @ Prosper High School '25</h3>
+        <p>I'm hardworking, creative, and innovative—looking to serve others and the community.</p>
+        <div class="profile-container">
+            <div class="spinner-border"></div> <!-- Spinning border -->
+            <img src="./Images/pfp.png" alt="Profile Picture"> <!-- Your profile picture -->
+        </div>
+        <div id="btn-box">
+            <a href="mailto:sharma.nick67@gmail.com" class="email-button">Email Me</a>
+        </div>
+    </section>
+
+    <section class="info">
+        <div class="info-header">
+            <h1>Details</h1>
+        </div>
+        <div class="info-box">
+            <a href="information.html">
+                <i class='bx bxs-user'></i>
+                <h4>Information</h4>
+            </a>
+        </div>
+        <div class="info-box">
+            <a href="awards.html">
+                <i class='bx bxs-award'></i>
+                <h4>Awards</h4>
+            </a>
+        </div>
+        <div class="info-box">
+            <a href="ap.html">
+                <i class='bx bxs-book'></i>
+                <h4>AP Courses</h4>
+            </a>
+        </div>
+        <div class="info-box">
+            <a href="extracurriculars.html">
+                <i class='bx bxs-star'></i>
+                <h4>Extracurriculars</h4>
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Nick Sharma. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button id="back-to-top-btn">
+        <i class='bx bxs-chevron-up'></i>
+    </button>
+
+    <script>
+        const backToTopBtn = document.getElementById('back-to-top-btn');
+        window.onscroll = function() {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                backToTopBtn.style.display = 'block';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        };
+
+        backToTopBtn.addEventListener('click', function() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        });
+    </script>
+</body>
+</html>

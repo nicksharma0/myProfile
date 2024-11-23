@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Prosper High School GPA Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif; /* Changed font */
+            background-color: #2D3142;
+            color: #000000;
+            margin: 20px;
+        }
+    
+        .header {
+            background-color: #1F2235; /* Green header */
+            color: #ffffff;
+            height: 40px;
+            padding: 30px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 35px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif; /* Header font */
+        }
+    
+        h1 {
+            text-align: center;
+            width: 100%;
+        }
+    
+        .container {
+            display: flex;
+            width: 100%;
+        }
+    
+        .left {
+            flex: 1;
+            margin-right: 20px;
+        }
+    
+        .right {
+            width: 40%;
+            padding-right: 20px;
+            height: 40px;
+        }
+
+        #addRow{
+            border: 1px solid #5A9BCF;
+        }
+    
+        textarea {
+            width: 100%;
+            max-height: 150px; /* Set a maximum height */
+            height: 200px; /* Default height */
+            font-size: 16px;
+            border: 1px solid #5A9BCF;
+            border-radius: 4px;
+            background-color: #1F2235;
+            color: #5f8fb6;
+            resize: vertical; /* Allows vertical resizing */
+            box-sizing: border-box; /* Includes padding and border in element's total width and height */
+            overflow: auto; /* Allow scrolling */
+            -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer and Edge */
+            scrollbar-width: none; /* Hide scrollbar in Firefox */
+        }
+
+        textarea::placeholder {
+            color: #5f8fb6; /* Change to your desired placeholder color */
+            opacity: 1; /* Ensure full opacity */
+        }
+
+        textarea::-webkit-scrollbar {
+            display: none; /* Hide the scrollbar in WebKit browsers (Chrome, Safari) */
+        }
+
+    
+        button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 20px 20px; /* Increased the padding */
+            font-size: 20px;
+            background-color: #1F2235;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+    
+        button:hover {
+            background-color: #5A9BCF;
+            color: #000000;
+            transform: scale(1.02);
+        }
+    
+        .outputSection {
+            margin-top: 20px;
+            height: 220px;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #1F2235;
+            color: #5A9BCF;
+            text-align: center;
+            font-size: 25px;
+            border: 1px solid #5A9BCF;
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0px; /* Adjust this value to move the table up */
+            background-color: #ffffff;
+            color: #000000;
+            min-height: 200px; /* You can keep or adjust this */
+        }
+    
+        th, td {
+            border: 1px solid #5A9BCF;
+            padding: 8px;
+            text-align: center;
+        }
+    
+        th {
+            background-color: #1F2235;
+            color: #ffffff;
+        }
+    
+        td {
+            border: 1px solid #5A9BCF;
+            padding: 8px;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            text-align: center;
+        }
+    
+        td input, td select {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #5A9BCF;
+            border-radius: 4px;
+            background-color: #ffffff;
+            color: #5A9BCF;
+            box-sizing: border-box; /* Prevents overflow */
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+        }
+    
+        tr:nth-child(odd) {
+            background-color: #292c46; /* Light tan color */
+        }
+
+        tr:nth-child(even) {
+            background-color: #292c46; /* White color */
+        }
+
+        /* Style for the text input fields */
+        td input {
+            background-color: transparent; /* Makes the background transparent so it shows the row color */
+            outline: black, aliceblue, 1px;
+        }
+
+        /* If you want to add more styling to input fields */
+        td input:focus {
+            background-color: rgba(6, 10, 63, 0.5); /* Light tan with some transparency when focused */
+            border: none;
+        }
+    
+        #gpaOutput {
+            font-size: 50px; /* Make the GPA number larger */
+            margin-top: 1%; /* Space above the GPA number */
+        }
+
+        .footer {
+            margin-top: auto;
+            background-color: #1F2235;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+        }
+        .footer-content {
+            color: #ffffff;
+        }
+    
+        #scrollToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #1F2235; /* Button color */
+            color: white; /* Text color */
+            padding: 10px;
+            border-radius: 50%;
+            text-align: center;
+            text-decoration: none;
+            font-size: 24px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s;
+        }
+    
+        #scrollToTop:hover {
+            background-color: #5A9BCF; /* Change color on hover */
+            color: #000000;
+            transform: scale(1.05);
+        }
+    </style>    
+</head>
+
+
+<body>
+    <div class="disclaimer" style="background-color: #1F2235; border: 2px solid red; color: red; padding: 15px; margin-bottom: 20px; text-align: center; font-weight: bold; width: 100%; box-sizing: border-box;">
+        This is a STUDENT made calculator, it is not official. It's possible the calculated GPA is not accurate; for the best results, make sure the table accurately represents your transcript.
+    </div>
+    
+    <div class="header">Prosper High School GPA Calculator</div>
+    <div class="container">
+        <div class="left">
+            <table id="classTable">
+                <thead>
+                    <tr>
+                        <th>Class Name</th>
+                        <th>Semester 1 Grade</th>
+                        <th>Semester 2 Grade</th>
+                        <th>Class Weight</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+            <button type="button" id="addRow">Add Row</button>
+        </div>
+
+        <div class="right">
+            <form id="inputForm">
+                <textarea id="userInput" name="userInput" placeholder="Paste your transcript from Skyward here. (This is a work in progress)
+                
+Example Transcript:
+LANGUAGE ARTS
+2022 ENG 1:H 95 97 1.000
+2023 ENG 2:H 95 98 1.000
+SPEECH
+2023 PROFCOMM 92 0.500
+MATHEMATICS
+2021 ALG 1:JQ 91 0.500
+2021 ALG 1:JQ 94 0.500
+2022 GEOM:H 95 96 1.000
+SCIENCE
+2022 BIO:H 93 97 1.000
+2023 CHEM:H 96 98 1.000
+SOCIAL STUDIES
+2022 W GEO 97 96 1.000
+2023 W HIST:H 99 98 1.000
+P.E./EQUIVALENT
+2023 SUBATH2 100 0.500
+OTHER LANGUAGE
+2021 SPAN 1:J 98 0.500
+2021 SPAN 1:J 98 0.500
+2022 SPAN 2:H 95 0.500
+2022 SPAN 2:H 98 0.500
+FINE ARTS
+2022 TADGAA 99 98 1.000
+CAREER/TECH ED
+2022 BUSIM1 98 100 1.000
+2022 TAFCS 97 98 1.000
+"></textarea><br>
+                <button type="submit">Fill Table</button>
+                <button type="button" id="calculateGPA">Calculate GPA</button>
+            </form>
+
+            <div class="outputSection">
+                <h2>Your Weighted GPA:</h2>
+                <p id="gpaOutput" style="text-align: center;">0.0</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="display: none;">
+        <h2>Combined Plain Text Output</h2>
+        <pre id="plainTextOutput" style="display: none;">The plain text output will be displayed here.</pre>
+    </div>
+    <br><br><br>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Created by <a href="https://www.nick-sharma.com/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #5A9BCF; font-size: 17px;">Nick Sharma</a> | Class of 2025</p>
+        </div>
+    </footer>
+    
+
+    <script>
+        const gpaScale = {
+            100: [5, 5.5, 6],
+            99: [4.9, 5.4, 5.9],
+            98: [4.8, 5.3, 5.8],
+            97: [4.7, 5.2, 5.7],
+            96: [4.6, 5.1, 5.6],
+            95: [4.5, 5, 5.5],
+            94: [4.4, 4.9, 5.4],
+            93: [4.3, 4.8, 5.3],
+            92: [4.2, 4.7, 5.2],
+            91: [4.1, 4.6, 5.1],
+            90: [4, 4.5, 5],
+            89: [3.9, 4.4, 4.9],
+            88: [3.8, 4.3, 4.8],
+            87: [3.7, 4.2, 4.7],
+            86: [3.6, 4.1, 4.6],
+            85: [3.5, 4, 4.5],
+            84: [3.4, 3.9, 4.4],
+            83: [3.3, 3.8, 4.3],
+            82: [3.2, 3.7, 4.2],
+            81: [3.1, 3.6, 4.1],
+            80: [3, 3.5, 4],
+            79: [2.9, 3.4, 3.9],
+            78: [2.8, 3.3, 3.8],
+            77: [2.7, 3.2, 3.7],
+            76: [2.6, 3.1, 3.6],
+            75: [2.5, 3, 3.5],
+            74: [2.4, 2.9, 3.4],
+            73: [2.3, 2.8, 3.3],
+            72: [2.2, 2.7, 3.2],
+            71: [2.1, 2.6, 3.1],
+            70: [2, 2.5, 3]
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize with 5 empty rows
+            for (let i = 0; i < 5; i++) {
+                addRowToTable('', '', '', 'On Level');
+            }
+        });
+
+        document.getElementById('inputForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const userInput = document.getElementById('userInput').value;
+
+            const lines = userInput.split('\n');
+            const plainTextOutput = document.getElementById('plainTextOutput');
+            plainTextOutput.textContent = 'The plain text output will be displayed here.';
+
+            const linesWithColons = lines.filter(line => line.includes(':') && /\d/.test(line));
+            const linesWithoutColons = lines.filter(line => !line.includes(':') && /\d/.test(line));
+
+            const processedColonLines = processLines(linesWithColons, true);
+            const secondParseLines = processedColonLines.map(line =>
+                line.join(' ').replace(/\s+(?=\S*:)/g, '')
+            );
+            const colonOutput = secondParseLines.length > 0 ? secondParseLines.join('\n') : 'No valid lines with colons found.';
+
+            const processedNoColonLines = processLines(linesWithoutColons);
+            const noColonOutput = processedNoColonLines.length > 0 ?
+                processedNoColonLines.map(line => line.join(' ')).join('\n').replace(/([a-zA-Z]) ([a-zA-Z])/g, '$1$2') :
+                'No valid lines without colons found.';
+
+            const combinedOutput = `${colonOutput}\n${noColonOutput}`;
+            plainTextOutput.textContent = combinedOutput;
+
+            const classTableBody = document.getElementById('classTable').querySelector('tbody');
+            classTableBody.innerHTML = '';
+
+            const combinedLines = combinedOutput.split('\n');
+            combinedLines.forEach(line => {
+                let className, semester1Grade, semester2Grade, classWeight = 'On Level';
+                if (line.includes(':')) {
+                    className = line.split(':')[0].trim();
+                    const grades = line.split(':')[1].trim().split(' ');
+                    semester1Grade = grades[1] || '';
+                    semester2Grade = grades[2] || '';
+
+                    if (grades[0].includes('H') || grades[0].includes('Q')) {
+                        classWeight = 'Honors';
+                    } else if (grades[0].includes('P') || grades[0].includes('D')) {
+                        classWeight = 'AP/Dual Credit';
+                    }
+                } else {
+                    className = line.split(' ')[0];
+                    const grades = line.split(' ').slice(1);
+                    semester1Grade = grades[0] || '';
+                    semester2Grade = grades[1] || '';
+                }
+
+                addRowToTable(className, semester1Grade, semester2Grade, classWeight);
+            });
+
+            document.getElementById('classTable').style.display = classTableBody.childNodes.length > 0 ? 'table' : 'none';
+        });
+
+        const processLines = (linesArray, withColons = false) => {
+            return linesArray.map(line => {
+                if (withColons) {
+                    line = line.replace(/\s*:\s*/, ':');
+                    line = line.replace(/(\S+)\s*:/g, '$1:');
+                }
+                line = line.trim().replace(/([a-zA-Z]+)\s+([a-zA-Z]+)/g, '$1$2');
+                const words = line.split(/\s+/);
+                if (words.length > 2) {
+                    const processed = words.slice(1, -1);
+                    return processed;
+                }
+                return [];
+            }).filter(line => line.length > 0);
+        };
+        document.getElementById('calculateGPA').addEventListener('click', function() {
+            const classTableBody = document.getElementById('classTable').querySelector('tbody');
+            let totalPoints = 0;
+            let totalClasses = 0;
+
+            classTableBody.childNodes.forEach((row, index) => {
+                const semester1Grade = row.children[1].querySelector('input').value;
+                const semester2Grade = row.children[2].querySelector('input').value;
+
+                // Reset row color to default
+                row.style.backgroundColor = ''; // Remove previous color
+
+                [semester1Grade, semester2Grade].forEach(grade => {
+                    // Skip processing if the grade cell is empty
+                    if (grade === '') {
+                        return; // Skip to the next iteration
+                    }
+
+                    const numericGrade = parseFloat(grade);
+
+                    // Change row color to red if the grade is not an integer
+                    if (!Number.isInteger(numericGrade)) {
+                        row.style.backgroundColor = 'red';
+                    } else if (numericGrade < 70) {
+                        // Change row color to red if the integer is less than 70
+                        row.style.backgroundColor = 'red';
+                    }
+
+                    if (!isNaN(numericGrade) && numericGrade >= 0) {
+                        totalClasses++;
+                        const points = getGPAPoints(numericGrade, row.children[3].querySelector('select').value);
+                        totalPoints += points;
+                    }
+                });
+            });
+
+            const gpa = totalClasses > 0 ? (totalPoints / totalClasses).toFixed(3) : 0;
+            document.getElementById('gpaOutput').textContent = `${gpa}`;
+        });
+
+
+        const getGPAPoints = (grade, weight) => {
+            let points;
+            const keys = Object.keys(gpaScale).sort((a, b) => b - a);
+            const numericGrade = parseFloat(grade);
+
+            for (let key of keys) {
+                if (numericGrade >= key) {
+                    if (weight === 'AP/Dual Credit') {
+                        points = gpaScale[key][2];
+                    } else if (weight === 'Honors') {
+                        points = gpaScale[key][1];
+                    } else {
+                        points = gpaScale[key][0];
+                    }
+                    break;
+                }
+            }
+            return points || 0;
+        };
+
+        document.getElementById('addRow').addEventListener('click', function() {
+            addRowToTable('', '', '', 'On Level');
+        });
+
+        function addRowToTable(className, semester1Grade, semester2Grade, classWeight) {
+            const classTableBody = document.getElementById('classTable').querySelector('tbody');
+            const row = document.createElement('tr');
+
+            const cellClass = document.createElement('td');
+            const inputClass = document.createElement('input');
+            inputClass.type = 'text';
+            inputClass.value = className;
+            cellClass.appendChild(inputClass);
+
+            const cellGrade1 = document.createElement('td');
+            const inputGrade1 = document.createElement('input');
+            inputGrade1.type = 'text';
+            inputGrade1.value = semester1Grade;
+            cellGrade1.appendChild(inputGrade1);
+
+            const cellGrade2 = document.createElement('td');
+            const inputGrade2 = document.createElement('input');
+            inputGrade2.type = 'text';
+            inputGrade2.value = semester2Grade;
+            cellGrade2.appendChild(inputGrade2);
+
+            const cellWeight = document.createElement('td');
+            const inputWeight = document.createElement('select');
+            const weights = ['On Level', 'Honors', 'AP/Dual Credit'];
+            weights.forEach(weight => {
+                const option = document.createElement('option');
+                option.value = weight;
+                option.textContent = weight;
+                if (weight === classWeight) {
+                    option.selected = true;
+                }
+                inputWeight.appendChild(option);
+            });
+            cellWeight.appendChild(inputWeight);
+
+            const cellAction = document.createElement('td');
+            const buttonRemove = document.createElement('button');
+            buttonRemove.textContent = 'Remove';
+            buttonRemove.onclick = function() {
+                classTableBody.removeChild(row);
+            };
+            cellAction.appendChild(buttonRemove);
+
+            row.appendChild(cellClass);
+            row.appendChild(cellGrade1);
+            row.appendChild(cellGrade2);
+            row.appendChild(cellWeight);
+            row.appendChild(cellAction);
+            classTableBody.appendChild(row);
+        }
+
+        document.addEventListener('scroll', () => {
+            const scrollToTopButton = document.getElementById('scrollToTop');
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                scrollToTopButton.style.display = 'block';
+            } else {
+                scrollToTopButton.style.display = 'none';
+            }
+        });
+        
+        document.getElementById('scrollToTop').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+    </script>
+
+    <a href="#" id="scrollToTop" title="Scroll to top" style="display: none;">↑</a>
+        
+
+    
+</body>
+</html>

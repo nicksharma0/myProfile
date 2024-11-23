@@ -1,0 +1,608 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif; /* Updated font family */
+}
+
+body {
+    background-color: #0c1022; /* Dark blue background */
+    color: #eeebdd; /* Light yellow text */
+    margin: 0;
+}
+
+/* Header adjustments */
+.header {
+    padding: 20px 10%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #0c1022; /* Dark blue background */
+    z-index: 1000; /* Ensure header is on top */
+    transition: top 0.3s; /* Smooth transition for hiding/showing */
+}
+
+.header.hidden {
+    top: -100px; /* Adjust this value as needed to fully hide the header */
+}
+
+.logo {
+    font-size: 25px;
+    color: #eeebdd; /* Light yellow */
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.navbar {
+    z-index: 1001; /* Ensure navbar links are on top */
+}
+
+.navbar a {
+    font-size: 16px;
+    background-color: #0c1022; /* Dark blue background */
+    color: #eeebdd; /* Light yellow */
+    font-weight: 500;
+    margin-left: 30px;
+    text-decoration: none;
+    transition: .3s;
+}
+
+/* Mobile Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Start off-screen to the left */
+    height: 100vh;
+    width: 250px;
+    z-index: 1002;
+    background-color: #0c2738;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Adjust shadow as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    transition: left 0.3s ease;
+    padding-top: 20px; /* Add padding at the top for spacing */
+}
+
+/* Mobile Sidebar open state */
+.sidebar-open {
+    left: 0; /* Slide in when checkbox is checked */
+}
+
+/* Sidebar links */
+.sidebar a {
+    display: block; /* Ensure each link is on a new line */
+    width: 100%; /* Make links take up the full width */
+    padding: 10px 20px; /* Add padding for spacing */
+    text-decoration: none; /* Remove underline */
+    color: #eeebdd; /* Text color */
+    border-bottom: 1px solid #ccc; /* Optional: add a border between links */
+}
+
+/* Hide sidebar and toggle button by default */
+.sidebar,
+.mobile-menu-toggle {
+    display: none;
+}
+
+/* Show sidebar and toggle button on small screens */
+@media (max-width: 768px) {
+    .sidebar,
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .navbar {
+        display: none; /* Hide top navbar on mobile */
+    }
+}
+
+/* Styling for mobile menu toggle */
+.mobile-menu-icon {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+}
+
+.mobile-menu-icon:before,
+.mobile-menu-icon:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #eeebdd; /* Light yellow */
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu-icon:before {
+    top: 0;
+}
+
+.mobile-menu-icon:after {
+    bottom: 0;
+}
+
+#mobile-menu-checkbox {
+    display: none; /* Hide default checkbox */
+}
+
+#mobile-menu-checkbox:checked + .mobile-menu-icon:before {
+    transform: rotate(45deg);
+    top: 13px;
+}
+
+#mobile-menu-checkbox:checked + .mobile-menu-icon:after {
+    transform: rotate(-45deg);
+    bottom: 13px;
+}
+
+.navbar a:hover {
+    color: #03dac6; /* Turquoise */
+}
+
+.home,
+.info {
+    padding-top: 120px; /* Adjust this value as needed */
+}
+
+.home {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.home-content {
+    max-width: 600px;
+}
+
+.home-content h1 {
+    font-size: 50px;
+    font-weight: 700;
+    color: #eeebdd; /* Light yellow */
+}
+
+.home-content h3 {
+    color: #9b9b9b; /* Light gray */
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.home-content p {
+    color: #b5b5b5; /* Light gray */
+    margin: 20px 0;
+}
+
+#btn-box {
+    width: 345px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#btn-box a {
+    position: relative;
+    display: inline-flex;
+    width: 150px;
+    height: 100%;
+    background: transparent;
+    border: 2px solid #b5b5b5; /* Light gray border */
+    border-radius: 8px;
+    font-size: 19px;
+    color: #9b9b9b; /* Light gray */
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: .3s;
+}
+
+#btn-box a:hover::before {
+    width: 100%;
+}
+
+#btn-box a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background: #d4d2e6; /* Dark blue background */
+    transition: width .4s ease;
+    z-index: -1;
+}
+
+.info .info-header {
+    font-size: 30px;
+    color: #eeebdd; /* Light yellow */
+    text-align: center;
+    margin-bottom: 3rem; /* Adjust spacing */
+    background-color: #0c2738;
+    padding: 20px;
+}
+
+.info-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust columns for responsiveness */
+    gap: 4rem; /* Adjust the gap between boxes */
+    padding: 0 5%; /* Adjust padding for edge spacing */
+    max-width: 2000px; /* Adjust maximum width for the container */
+    margin: 0 auto; /* Center align the container */
+}
+
+.info-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1a1a1a; /* Dark gray */
+    height: 300px; /* Adjust height as needed */
+    border-radius: 3rem;
+    cursor: pointer;
+    border: 5px solid #0f0c29; /* Dark blue border */
+    transition: transform 0.4s ease-in-out, background-color 0.4s ease-in-out, border-color 0.4s ease-in-out;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none; /* Remove default link underline */
+    padding: 1rem; /* Add padding inside each box */
+}
+
+.info-box:hover {
+    background: #0f4c75; /* Teal */
+    border: 5px solid #eeebdd; /* Light yellow border */
+    transform: scale(1.03);
+}
+
+.info-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #eeebdd; /* Light yellow */
+}
+
+.info-info i {
+    font-size: 3rem; /* Adjust icon size */
+    margin-bottom: 1rem; /* Space between icon and text */
+}
+
+.info-info h4 {
+    font-size: 1.5rem; /* Adjust font size for headings */
+    margin: 0.5rem 0; /* Adjust top and bottom margin */
+    font-weight: 800;
+}
+
+.info-info p {
+    font-size: 1rem; /* Adjust font size for paragraphs */
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.info-info i {
+    font-size: 8rem;
+}
+
+.info-header {
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.difColor{
+    color:#0f4c75;
+}
+
+.difColorhead{
+    color:#0f4c75;
+    font-size: 55px;
+    font-weight: 800;
+}
+
+.info-header.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animation for info boxes */
+.info-box {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.info-box.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.myImage {
+    position: relative;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    left: 850px;
+    width: 250px; /* Adjust the width as needed */
+    height: 250px; /* Adjust the height as needed */
+    top: -270px;
+}
+
+.profile-wrapper {
+    position: relative;
+    display: inline-block; /* Ensures circle stays within the profile picture bounds */
+}
+
+.circle-animation {
+    position: absolute;
+    top: -145px; /* Adjust based on your design */
+    left: 975px; /* Adjust based on your design */
+    transform: translate(-50%, -50%);
+    width: 260px; /* Adjust size of the circle */
+    height: 260px; /* Adjust size of the circle */
+    border-radius: 50%;
+    border: 10px solid #03dac6; /* Turquoise border */
+    border-top-color: transparent;
+    animation: rotateCircle 8s linear infinite; /* Adjust animation duration and timing */
+}
+
+/* Footer styles */
+.footer {
+    background-color: #0c2738; /* Dark blue background */
+    color: #eeebdd; /* Light yellow text */
+    padding: 20px 10%;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer p {
+    margin: 0;
+}
+
+/* Back to Top button */
+#back-to-top-btn {
+    background-color: #0f0c29; /* Dark blue background */
+    color: #eeebdd; /* Light yellow text */
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+#back-to-top-btn:hover {
+    background-color: #03dac6; /* Turquoise */
+}
+
+@media (max-width: 1024px) {
+    /* CSS rules for smaller screens */
+    .navbar {
+        flex-direction: column; /* Stack navigation links vertically */
+        align-items: flex-start; /* Align links to the left */
+    }
+    .header {
+        padding: 10px 5%; /* Reduce padding for header */
+    }
+    .home {
+        padding-top: 80px; /* Adjust padding for smaller screens */
+    }
+    .info-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust grid columns */
+        gap: 2rem; /* Adjust gap between boxes */
+    }
+}
+
+/* Certificates grid */
+.certifications {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.certification-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+    gap: 1.5rem; /* Gap between items */
+    padding: 0 2rem; /* Padding around the gallery */
+    max-width: 1200px; /* Max width for the gallery */
+    margin: 0 auto; /* Center align the gallery */
+}
+
+.certification-item {
+    background-color: #6a1b9a; /* Dark gray background */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden;
+    text-align: center;
+    padding: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certification-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow on hover */
+}
+
+.cert-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Match image corners with item */
+}
+
+.certification-item p {
+    margin-top: 1rem;
+    color: #eeebdd; /* Light yellow text */
+    font-size: 1rem;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000; /* On top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content (image) */
+.modal-content {
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    z-index: 1001; /* Ensure it's above the arrows */
+}
+
+/* Add Animation */
+.modal-content {  
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    z-index: 1002; /* Ensure it's above the image */
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.3s ease;
+    user-select: none;
+    z-index: 1002; /* Ensure it's above the image */
+}
+
+.prev {
+    left: 10px;
+    border-radius: 3px 0 0 3px;
+}
+
+.next {
+    right: 10px;
+    border-radius: 0 3px 3px 0;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+@media (max-width: 768px) {
+    .myImage {
+        position: absolute;
+        left: auto; /* Reset left positioning */
+        transform: none; /* Reset any transformations */
+        width: 150px; /* Adjust the width */
+        height: 150px; /* Adjust the height */
+        margin: 0 auto; /* Center align the image */
+        top: -640px; /* Reset top positioning */
+    }
+
+    .home-content{
+        margin-right: 0px;
+        padding-left: 0;
+    }
+    
+    .circle-animation {
+        position: absolute;
+        top: -570px; /* Adjust based on your design */
+        left: 75px; /* Adjust based on your design */
+        transform: translate(-50%, -50%);
+        width: 160px; /* Adjust size of the circle */
+        height: 160px; /* Adjust size of the circle */
+        border-radius: 50%;
+        border: 10px solid #03dac6; /* Turquoise border */
+        border-top-color: transparent;
+        animation: rotateCircle 7s linear infinite; /* Adjust animation duration and timing */
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 10px 5%; /* Reduce padding for header */
+    }
+
+    .home {
+        padding-top: 80px; /* Adjust padding for smaller screens */
+    }
+    
+    .info {
+        padding-top: 20px; /* Ensure content is close to each other */
+    }
+}
+
+/* Keyframe Animations */
+@keyframes showRight {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.showRight {
+    animation: showRight 1s ease forwards;
+}
+
+.info-box {
+    border: 5px solid #eeebdd; /* Light yellow border */
+}
+
+@keyframes rotateCircle {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
