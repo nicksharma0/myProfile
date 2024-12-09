@@ -17,84 +17,15 @@
         canvas {
             display: block;
         }
-        #search-container {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            border-radius: 5px;
-        }
-        input[type="text"] {
-            padding: 5px;
-            font-size: 14px;
-            width: 200px;
-            border: none;
-            border-radius: 5px;
-        }
-        button {
-            padding: 5px;
-            font-size: 14px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-        #song-link {
-            color: white;
-            margin-top: 10px;
-            font-size: 14px;
-        }
     </style>
 </head>
 <body>
     <canvas id="visualizer"></canvas>
-
     <script>
         const canvas = document.getElementById('visualizer');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
-        // Genius API credentials
-        const ACCESS_TOKEN = 'Q7xcfwKW4CAgw1r8SxBGjTg9dfmBdP3o04ApG7LVAXwtOCWWEAmPwKPlZ1cDcyjI'; // Replace with your Genius API access token
-
-        // Search button and input field
-        const searchButton = document.getElementById('search-button');
-        const searchInput = document.getElementById('song-search');
-        const songLinkDiv = document.getElementById('song-link');
-
-        // Handle song search
-        searchButton.addEventListener('click', () => {
-            const songName = searchInput.value.trim();
-            if (songName) {
-                searchSong(songName);
-            }
-        });
-
-        // Function to search for a song
-        function searchSong(songName) {
-            fetch(`https://api.genius.com/search?q=${encodeURIComponent(songName)}`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${ACCESS_TOKEN}`
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                const song = data.response.hits[0]?.result;
-                if (song) {
-                    const songUrl = song.url;
-                    songLinkDiv.innerHTML = `<a href="${songUrl}" target="_blank" style="color: #3498db;">View on Genius</a>`;
-                } else {
-                    songLinkDiv.innerHTML = 'Song not found.';
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching song data:', error);
-                songLinkDiv.innerHTML = 'Error searching for song.';
-            });
-        }
 
         navigator.mediaDevices.getDisplayMedia({ audio: true, video: true })
             .then(stream => {
@@ -115,7 +46,7 @@
                 const MAX_BASS_RADIUS = canvas.width / 1; // Max radius for the bass circle
 
                 function drawVisualizer() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.clearRect(0, 0, canvas.width, canvas.height); 
 
                     analyser.getByteFrequencyData(dataArray);
 
@@ -149,7 +80,7 @@
                     // Treble bars visualization (thinner bars)
                     const trebleStartIndex = Math.floor(bufferLength / 4);
                     const trebleEndIndex = Math.floor(bufferLength * 0.6);
-                    const visualizerWidth = canvas.width * 0.6;
+                    const visualizerWidth = canvas.width * 0.6; 
                     const barWidth = visualizerWidth / (trebleEndIndex - trebleStartIndex) - 2; // Thinner bars
                     const gap = 2; // Space between bars
 
@@ -181,7 +112,7 @@
                         x += barWidth + gap;
                     }
 
-                    requestAnimationFrame(drawVisualizer);
+                    requestAnimationFrame(drawVisualizer); 
                 }
 
                 drawVisualizer();
