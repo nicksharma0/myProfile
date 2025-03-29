@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Portfolio Website Design</title>
+    <title>Home | Nick Sharma</title>
     <link rel="stylesheet" href="indexstyle.css">
     <!----Font awesome cdn  font icon css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
@@ -27,10 +27,9 @@
                     </div>
                     <ul class="navlinks">
                         <li><a href="#">Home</a></li>
-                        <li><a href="information.html">Information</a></li>
-                        <li><a href="ap.html">AP Courses</a></li>
-                        <li><a href="awards.html">Awards and Certificates</a></li>
-                        <li><a href="extracurriculars.html">Extracurriculars</a></li>
+                        <li><a href="#ECLink">Extracurriculars</a></li>
+                        <li><a href="awards.html">Portfolio</a></li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
                 </nav>
             </header>
@@ -39,24 +38,114 @@
                     <a href="https://imgbb.com/"><img src="https://i.ibb.co/Cswt8STV/main-photo.png" alt="main-photo"></a>
                  </div>
                  <div class="hero-text">
-                    <h5>Hi I'm <span class="input">High School Student</span></h5>
-                    <h1>Nick Sharma</h1>
-                    <p> I'm a high school student exploring cybersecurity and technology. Learning through AP courses and personal projects, I’m building my programming skills and problem-solving abilities, eager to tackle new challenges in the digital world.
-                    </p>
+                    <h5>Hi I'm <span class="input">High School Student,</span></h5>
+                    <h1>Nick Sharma.</h1>
+                    <p>I’m a math focused student drawn to quantitative finance because it merges problem solving with real world impact. I'm Currently strengthening my foundation through Calculus and AP Computer Science A, I’m just beginning to explore probability and statistics—teaching myself core concepts to bridge textbook math to financial applications.</p>
 
                     <div class="btn-group">
                        <a href="#" class="btn active">Portfolio</a>
-                       <a href="#" class="btn">Download Resume</a>
+                       <a href="Resume.pdf" target="_blank" class="btn">Download Resume</a>
                     </div>
 
                     <div class="social">
-                        <a href="https://www.linkedin.com/in/nick-sharma-9a1165344/"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://www.instagram.com/nick.sharma06/"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/nick-sharma-9a1165344/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/nick.sharma06/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                     </div>
                  </div>
             </div>
         </div>
-     </div>
+    </div>
+    <div id= "ECLink" style="
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 32px;
+    color: white;
+    background-color: #222;
+    font-weight: 500;
+    ">
+        Extracurriculars
+    </div>
+    <div class="portfolio" style="
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding-left: 8%;
+        padding-right: 8%;
+        background-color: #222;
+        padding-bottom: 20px;
+    ">
+        <!-- Row 1 -->
+        <div style="
+            background-color: #2A282D;
+            border-radius: 35px;
+            padding: 20px;
+            border: 2px solid tomato;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3), 5px 7px 25px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+            text-align: center;
+        ">
+            <h3 style="color: #f8f8f8; padding-bottom: 1%;">BSFS Education</h3>
+            <p style="color: #aaa; text-align: left;">
+                At BSFS Education, I break down complex math concepts through a peer’s perspective, making learning relatable and accessible. My videos and posts simplify topics like algebra and calculus using real-world analogies and collaborative problem-solving—creating a supportive space where students build confidence and intuition alongside formal skills.
+            </p>
+        </div>
+
+        <div style="
+        background-color: #2A282D;
+        border-radius: 35px;
+        padding: 20px;
+        border: 2px solid tomato;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3), 5px 7px 25px rgba(0,0,0,0.5);
+        transition: transform 0.3s ease;
+        text-align: center;
+    ">
+        <h3 style="color: #f8f8f8; padding-bottom: 1%;">Tax Preparer</h3>
+        <p style="color: #aaa; text-align: left;">
+            I accurately process client tax documents and input financial data into preparation software. My role involves clarifying filing requirements, identifying deductions, and maintaining confidentiality. This position has refined my attention to detail and ability to explain complex tax matters clearly.
+        </p>
+    </div>
+
+    <div style="
+        background-color: #2A282D;
+        border-radius: 35px;
+        padding: 20px;
+        border: 2px solid tomato;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3), 5px 7px 25px rgba(0,0,0,0.5);
+        transition: transform 0.3s ease;
+        text-align: center;
+    ">
+        <h3 style="color: #f8f8f8; padding-bottom: 1%;">Elite Designs Market</h3>
+        <p style="color: #aaa; text-align: left;">
+            Co-founded this e-commerce venture specializing in tech accessories and lifestyle products. We've grown sales to $500+ through TikTok Shop and targeted advertising, with plans to expand our digital storefront and product lines. The business has developed my marketing and operational management skills.</p>
+    </div>
+    
+    </div>
+ <style>
+     .portfolio > div:hover {
+         transform: translateY(-5px);
+     }
+     
+     @media (max-width: 900px) {
+         .portfolio {
+             grid-template-columns: repeat(2, 1fr) !important;
+         }
+     }
+     
+     @media (max-width: 600px) {
+         .portfolio {
+             grid-template-columns: 1fr !important;
+         }
+     }
+
+     html {
+            scroll-behavior: smooth;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+
+ </style>
+
      <!---typed js for typing text effect-->
      <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
      <script>
@@ -71,7 +160,7 @@
         })
 
         var typed=new Typed(".input",{
-            strings:["High School Student","Aspiring Cybersecurity Analyst", "High School Student"],
+            strings:["High School Student,","Aspiring Quantitative Analyst,", "High School Student,"],
             typedSpeed:100,
             backSpeed:100,
             loop:true
