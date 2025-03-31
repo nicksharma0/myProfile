@@ -13,6 +13,7 @@
     background-color: #222;
     color: #fff;
     padding: 10px;
+    margin-bottom: 1%;
 }
 
 body{
@@ -154,9 +155,11 @@ nav .navlinks li a{
     border:2px solid #e5e5e5;
     box-shadow:  0 10px 10px -8px rgb(0 0 0 / 78%);
 }
+
 .btn.active{
     border-color: #007ced;
 }
+
 .hero-text .social i{
     color: #e5e5e5;
     font-size: 18px;
